@@ -132,6 +132,26 @@ def add_media(request):
 		return redirect('fault', fault='ACCESS DENIED!')
 
 
+def view_medias(request):
+
+	medias = models.Media.objects.all()
+	return render(request, 'frontend/view-medias.html', {'medias': medias})
+
+@login_required
+def delete_media(request, pk):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		try:
+			models.Media.objects.get(pk__exact=pk).delete()
+			return redirect('frontend:view_medias')
+		except:
+			return redirect('fault', fault="Some error occured")
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
 @login_required
 def add_event(request):
 

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+    {% if user.is_authenticated %}
+    {% if user.pk in admin_all or user.pk in frontend_all %}
+        {% for media in medias %}
+        <img src="{{ media.pic.url }}" height="100" width="100"> <a href="{% url 'frontend:delete_media' pk=media.pk %}">x</a> <br>
+        {% endfor %}
+    {% endif %}
+    {% endif %}
+    {% if not user.is_authenticated %}
+    {% for media in medias %}
+    <img src="{{ media.pic.url }}" height="100" width="100"><br>
+    {% endfor %}
+    {% endif %}
+{% endblock %}
