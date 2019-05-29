@@ -178,3 +178,28 @@ def add_recruiter(request):
 
 	else:
 		return redirect('fault', fault='ACCESS DENIED!')
+
+
+def view_recruiters(request):
+
+	recruiters = models.Recruiter.objects.all()
+	return render(request, 'frontend/view-recruiters.html', {'recruiters': recruiters})
+
+@login_required
+def delete_recruiter(request, pk):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		try:
+			models.Recruiter.objects.get(pk__exact=pk).delete()
+			return redirect('frontend:view_recruiters')
+		except:
+			return redirect('fault', fault="Some error occured")
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+
+
+
