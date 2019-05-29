@@ -134,3 +134,47 @@ def add_event(request):
 	else:
 		return redirect('fault', fault='ACCESS DENIED!')
 
+
+
+@login_required
+def add_testimonial(request):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.TestimonialForm(request.POST, request.FILES)
+			if form.is_valid():
+				form.save()
+				return redirect('success', success='Testimonial created successfully')
+			else:
+				return redirect('fault', fault='Server Error')
+		else:
+
+			form = forms.TestimonialForm()
+			return render(request, 'frontend/add-testimonial.html', {'form':form})
+
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+@login_required
+def add_recruiter(request):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.RecruiterForm(request.POST, request.FILES)
+			if form.is_valid():
+				form.save()
+				return redirect('success', success='Recruiter created successfully')
+			else:
+				return redirect('fault', fault='Server Error')
+		else:
+
+			form = forms.RecruiterForm()
+			return render(request, 'frontend/add-recruiter.html', {'form':form})
+
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')

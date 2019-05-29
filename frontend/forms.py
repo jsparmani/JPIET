@@ -53,3 +53,19 @@ class EventForm(forms.ModelForm):
 
 		model = models.Event
 		fields = '__all__'
+
+
+class TestimonialForm(forms.ModelForm):
+
+	class Meta():
+
+		model = models.Testimonial
+		fields = '__all__'
+
+
+class RecruiterForm(forms.ModelForm):
+
+	class Meta():
+
+		model = models.Recruiter
+		fields = '__all__'

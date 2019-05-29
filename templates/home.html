@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load counter %}
 {% block content %}
     <h1>Home Page</h1>
     <img src="{{ home_image.logo_image.url }}" height="100" width="100"><br>
@@ -16,16 +17,36 @@
     Years of Excellency: {{stats.years}}<br>
     <br><br><br>
     {% for notice in notices %}
-        <a href="{{ notice.pdf.url }}">{{ notice.text }}</a>
+        {% if forloop.counter|count4 %}
+            <a href="{{ notice.pdf.url }}">{{ notice.text }}</a>
+        {% endif %}
     {% endfor %}
     <br><br><br>
     {% for media in medias %}
-         <img src="{{ media.pic.url }}" height="100" width="100">
+        {% if forloop.counter|count4 %}
+            <img src="{{ media.pic.url }}" height="100" width="100">
+        {% endif %}
     {% endfor %}
     <br><br><br>
     {% for event in events %}
-        <h3>{{event.heading}}</h3>
-        <img src="{{ event.image.url }}" height="100" width="100">
-        <p>{{event.details}}</p>
+        {% if forloop.counter|count4 %}
+            <h3>{{event.heading}}</h3>
+            <img src="{{ event.image.url }}" height="100" width="100">
+            <p>{{event.details}}</p>
+        {% endif %}
+    {% endfor %}
+    <br><br><br>
+    {% for testimonial in testimonials %}
+        {% if forloop.counter|count4 %}
+            <h3>{{testimonial.name}}</h3>
+            <img src="{{ testimonial.image.url }}" height="100" width="100">
+            <p>{{testimonial.text}}</p>
+        {% endif %}
+    {% endfor %}
+    <br><br><br>
+    {% for recruiter in recruiters %}
+        {% if forloop.counter|count4 %}
+            <img src="{{ recruiter.image.url }}" height="100" width="100">
+        {% endif %}
     {% endfor %}
 {% endblock %}

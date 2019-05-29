@@ -61,5 +61,26 @@ class Event(models.Model):
 		ordering = ['-pk']
 
 
+class Testimonial(models.Model):
+
+	name = models.CharField(max_length=100, blank=False)
+	text = models.TextField(blank=False)
+	image = models.ImageField(upload_to='images/testimonials', blank=False)
+
+	class Meta():
+
+		ordering = ['-pk']
+
+
+class Recruiter(models.Model):
+
+	image = models.ImageField(upload_to='images/recruiters', blank=False)
+	on_landing = models.BooleanField(blank=False)
+
+	class Meta():
+
+		ordering = ['-pk']
+
+
 
 
