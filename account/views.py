@@ -24,13 +24,13 @@ def signup(request):
                 elif choice == 'frontend':
                     models.FrontEndUser.objects.create(user=user)
                 
-                return redirect('home')
+                return redirect('success', success='User created successfully ')
             else:
                 form = forms.UserCreateForm(request.POST)
                 return render(request, 'account/signup.html', {'form':form})
         else:
             form = forms.UserCreateForm()
-        return render(request, 'account/signup.html', {'form': form})
+            return render(request, 'account/signup.html', {'form': form})
     else:
         return redirect('fault', fault='ACCESS DENIED!')
 

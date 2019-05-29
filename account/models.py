@@ -9,8 +9,8 @@ class User(auth.models.User,auth.models.PermissionsMixin):
 
 class AdminUser(models.Model):
 
-    user = models.ForeignKey(
-        auth.models.User, related_name='admins', on_delete=models.CASCADE, unique=True)
+    user = models.OneToOneField(
+        auth.models.User, related_name='admins', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username
@@ -18,8 +18,8 @@ class AdminUser(models.Model):
 
 class FrontEndUser(models.Model):
 
-    user = models.ForeignKey(
-        auth.models.User, related_name='frontend', on_delete=models.CASCADE, unique=True)
+    user = models.OneToOneField(
+        auth.models.User, related_name='frontend', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username

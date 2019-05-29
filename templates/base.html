@@ -10,8 +10,9 @@
     {% endblock %}
 </head>
 <body>
+    <a href="{% url 'home' %}">Home</a>
     {% if user.is_authenticated %}
-        {% if user.pk in admin_list %}
+        {% if user.pk in admin_all %}
             <a href="{% url 'account:signup' %}">Add User</a>
             <a href="{% url 'account:user_list' %}">View Users</a>
         {% endif %}
