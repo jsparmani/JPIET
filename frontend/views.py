@@ -158,6 +158,26 @@ def add_testimonial(request):
 		return redirect('fault', fault='ACCESS DENIED!')
 
 
+def view_testimonials(request):
+
+	testimonials = models.Testimonial.objects.all()
+	return render(request, 'frontend/view-testimonials.html', {'testimonials': testimonials})
+
+@login_required
+def delete_testimonial(request, pk):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		try:
+			models.Testimonial.objects.get(pk__exact=pk).delete()
+			return redirect('frontend:view_testimonials')
+		except:
+			return redirect('fault', fault="Some error occured")
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
 @login_required
 def add_recruiter(request):
 
@@ -198,6 +218,8 @@ def delete_recruiter(request, pk):
 			return redirect('fault', fault="Some error occured")
 	else:
 		return redirect('fault', fault='ACCESS DENIED!')
+
+
 
 
 

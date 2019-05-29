@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+    {% if user.is_authenticated %}
+    {% if user.pk in admin_all or user.pk in frontend_all %}
+        {% for testimonial in testimonials %}
+        {{testimonial.name}}<br>
+        <img src="{{ testimonial.image.url }}" height="100" width="100"><Br>
+        {{testimonial.text}}<br>
+         <a href="{% url 'frontend:delete_testimonial' pk=testimonial.pk %}">x</a> <br>
+        {% endfor %}
+    {% endif %}
+    {% endif %}
+    {% if not user.is_authenticated %}
+    {% for testimonial in testimonials %}
+        {{testimonial.name}}<br>
+        <img src="{{ testimonial.image.url }}" height="100" width="100"><Br>
+        {{testimonial.text}}<br>
+    {% endfor %}
+    {% endif %}
+{% endblock %}
