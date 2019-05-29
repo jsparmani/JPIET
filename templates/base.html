@@ -16,6 +16,9 @@
             <a href="{% url 'account:signup' %}">Add User</a>
             <a href="{% url 'account:user_list' %}">View Users</a>
         {% endif %}
+        {% if user.pk in frontend_all %}
+            <a href="{% url 'frontend:home_image' %}">Change home images</a>
+        {% endif %}
         <a href="{% url 'account:logout' %}">Logout</a>
 
     {% endif %}

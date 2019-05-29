@@ -3,28 +3,13 @@ import smtplib
 from email.message import EmailMessage
 from django.http import HttpResponse
 
-""" def email_check(request):
-
-
-
-    msg = EmailMessage()
-    msg['Subject'] = 'Trial Mail'
-    msg['From'] = 'jpietuniversity@gmail.com'
-    msg['To'] = 'sjparmani@gmail.com'
-    msg.set_content('How about using gmail for SMTP')
-
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-
-        smtp.login('jpietuniversity@gmail.com', 'cook!es123')
-
-        smtp.send_message(msg)
-
-    return HttpResponse('Sent') """
+from frontend import models as fro_models
 
 
 def home(request):
-    
-    return render(request, 'home.html')
+
+    home_image = fro_models.HomeImage.objects.get(uid__exact=1)
+    return render(request, 'home.html', {'home_image':home_image})
 
 def fault(request, fault):
     

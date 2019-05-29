@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Home Page</h1>
+    <img src="{{ home_image.logo_image.url }}" height="100" width="100"><br>
+    <img src="{{ home_image.carousel_image1.url }}" height="100" width="100">
+    <img src="{{ home_image.carousel_image2.url }}" height="100" width="100">
+    <img src="{{ home_image.carousel_image3.url }}" height="100" width="100">
+    <img src="{{ home_image.carousel_image4.url }}" height="100" width="100"><br>
+    <img src="{{ home_image.side_image.url }}" height="100" width="100">
 {% endblock %}

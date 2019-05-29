@@ -17,6 +17,7 @@ urlpatterns = [
     path('fault/<str:fault>', views.fault, name='fault'),
     path('success/<str:success>', views.success, name='success'),
     path('account/', include('account.urls', namespace='account')),
+    path('frontend/', include('frontend.urls', namespace='frontend')),
     
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
