@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from . import forms
 from .import models
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -31,4 +32,30 @@ def signup(request):
             form = forms.UserCreateForm()
         return render(request, 'account/signup.html', {'form': form})
     else:
-        return redirect('fault',fault='ACCESS DENIED!')
+        return redirect('fault', fault='ACCESS DENIED!')
+
+
+@login_required
+def user_list(request):
+
+	if request.user.pk in [u['user'] for u in models.AdminUser.objects.all().values('user')]:
+		admin_list = models.AdminUser.objects.all().filter(user__is_active__exact=True)
+		frontend_list = models.FrontEndUser.objects.all().filter(user__is_active__exact=True)
+
+		return render(request, 'account/user-list.html', {'admin_list':admin_list, 'frontend_list':frontend_list})
+	else:
+		return redirect('fault', fault='ACCESS DENIED')
+
+
+@login_required
+def delete_user(request, pk):
+
+	if request.user.pk in [u['user'] for u in models.AdminUser.objects.all().values('user')]:
+		user = User.objects.get(pk__exact=pk)
+		user.is_active = False
+		user.save()
+
+		return redirect('success', success='User Deleted Successfully')
+
+	else:
+		return redirect('fault', fault='ACCESS DENIED')

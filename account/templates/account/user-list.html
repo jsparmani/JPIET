@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+Admin Users:<br>
+{% for user in admin_list %}
+    {{user}}   <a href="{% url 'account:delete_user' pk=user.user.pk %}">x</a><br>
+{% endfor %}
+<br>
+FrontEnd Users:<br>
+{% for user in frontend_list %}
+    {{user}}   <a href="{% url 'account:delete_user' pk=user.user.pk %}">x</a><br>
+{% endfor %}
+{% endblock %}

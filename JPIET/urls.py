@@ -14,7 +14,8 @@ urlpatterns = [
     
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('fault/<str:fault>/', views.fault, name='fault'),
+    path('fault/<str:fault>', views.fault, name='fault'),
+    path('success/<str:success>', views.success, name='success'),
     path('account/', include('account.urls', namespace='account')),
     
     

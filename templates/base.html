@@ -13,6 +13,7 @@
     {% if user.is_authenticated %}
         {% if user.pk in admin_list %}
             <a href="{% url 'account:signup' %}">Add User</a>
+            <a href="{% url 'account:user_list' %}">View Users</a>
         {% endif %}
         <a href="{% url 'account:logout' %}">Logout</a>
 
