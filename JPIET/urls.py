@@ -11,8 +11,10 @@ from django.conf.urls.static import static
 urlpatterns = [
     
     # path('', views.email_check, name='email_check'),
-    path('', views.home, name='home'),
+    
     path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
+    path('fault/<str:fault>/', views.fault, name='fault'),
     path('account/', include('account.urls', namespace='account')),
     
     
