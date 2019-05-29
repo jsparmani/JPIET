@@ -91,6 +91,25 @@ def add_notice(request):
 		return redirect('fault', fault='ACCESS DENIED!')
 
 
+def view_notices(request):
+
+	notices = models.Notice.objects.all()
+	return render(request, 'frontend/view-notices.html', {'notices': notices})
+
+@login_required
+def delete_notice(request, pk):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		try:
+			models.Notice.objects.get(pk__exact=pk).delete()
+			return redirect('frontend:view_notices')
+		except:
+			return redirect('fault', fault="Some error occured")
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
 @login_required
 def add_media(request):
 
@@ -131,6 +150,26 @@ def add_event(request):
 			form = forms.EventForm()
 			return render(request, 'frontend/add-event.html', {'form':form})
 
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+def view_events(request):
+
+	events = models.Event.objects.all()
+	return render(request, 'frontend/view-events.html', {'events': events})
+
+@login_required
+def delete_event(request, pk):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		try:
+			models.Event.objects.get(pk__exact=pk).delete()
+			return redirect('frontend:view_events')
+		except:
+			return redirect('fault', fault="Some error occured")
 	else:
 		return redirect('fault', fault='ACCESS DENIED!')
 

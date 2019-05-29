@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+    {% if user.is_authenticated %}
+    {% if user.pk in admin_all or user.pk in frontend_all %}
+        {% for event in events %}
+        {{event.heading}}<br>
+        <img src="{{ event.image.url }}" height="100" width="100"><Br>
+        {{event.details}}<br>
+         <a href="{% url 'frontend:delete_event' pk=event.pk %}">x</a> <br>
+        {% endfor %}
+    {% endif %}
+    {% endif %}
+    {% if not user.is_authenticated %}
+    {% for event in events %}
+        {{event.heading}}<br>
+        <img src="{{ event.image.url }}" height="100" width="100"><Br>
+        {{event.details}}<br>
+    {% endfor %}
+    {% endif %}
+{% endblock %}
