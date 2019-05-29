@@ -11,5 +11,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     
     # path('', views.email_check, name='email_check'),
+    path('', views.home, name='home'),
+    path('admin/', admin.site.urls),
+    path('account/', include('account.urls', namespace='account')),
+    
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,7 +3,7 @@ import smtplib
 from email.message import EmailMessage
 from django.http import HttpResponse
 
-def email_check(request):
+""" def email_check(request):
 
 
 
@@ -19,4 +19,9 @@ def email_check(request):
 
         smtp.send_message(msg)
 
-    return HttpResponse('Sent')
+    return HttpResponse('Sent') """
+
+
+def home(request):
+    
+    return render(request, 'home.html')
