@@ -17,7 +17,11 @@
             <a href="{% url 'account:user_list' %}">View Users</a>
         {% endif %}
         {% if user.pk in frontend_all %}
-            <a href="{% url 'frontend:home_image' %}">Change home images</a>
+            <a href="{% url 'frontend:change_home_image' %}">Change home images</a>
+            <a href="{% url 'frontend:change_stats' %}">Change Statistics</a>
+            <a href="{% url 'frontend:add_notice' %}">Add Notice</a>
+            <a href="{% url 'frontend:add_media' %}">Add Media Coverage</a>
+            <a href="{% url 'frontend:add_event' %}">Add Event</a>
         {% endif %}
         <a href="{% url 'account:logout' %}">Logout</a>
 

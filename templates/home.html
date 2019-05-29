@@ -7,4 +7,25 @@
     <img src="{{ home_image.carousel_image3.url }}" height="100" width="100">
     <img src="{{ home_image.carousel_image4.url }}" height="100" width="100"><br>
     <img src="{{ home_image.side_image.url }}" height="100" width="100">
+    <br><br><br>
+    Students: {{stats.students}}<br>
+    Area: {{stats.area}} sq. mt.<br>
+    Alumni: {{stats.alumni}}<br>
+    Recruiters: {{stats.recruiters}}<br>
+    Students Placed: {{stats.students_placed}}<br>
+    Years of Excellency: {{stats.years}}<br>
+    <br><br><br>
+    {% for notice in notices %}
+        <a href="{{ notice.pdf.url }}">{{ notice.text }}</a>
+    {% endfor %}
+    <br><br><br>
+    {% for media in medias %}
+         <img src="{{ media.pic.url }}" height="100" width="100">
+    {% endfor %}
+    <br><br><br>
+    {% for event in events %}
+        <h3>{{event.heading}}</h3>
+        <img src="{{ event.image.url }}" height="100" width="100">
+        <p>{{event.details}}</p>
+    {% endfor %}
 {% endblock %}

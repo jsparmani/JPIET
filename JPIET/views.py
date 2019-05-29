@@ -9,7 +9,11 @@ from frontend import models as fro_models
 def home(request):
 
     home_image = fro_models.HomeImage.objects.get(uid__exact=1)
-    return render(request, 'home.html', {'home_image':home_image})
+    stats = fro_models.Statistics.objects.get(uid__exact=1)
+    notices = fro_models.Notice.objects.all().filter(on_landing__exact=True)
+    medias = fro_models.Media.objects.all().filter(on_landing__exact=True)
+    events = fro_models.Event.objects.all().filter(on_landing__exact=True)
+    return render(request, 'home.html', {'home_image':home_image, 'stats':stats, 'notices':notices, 'medias':medias, 'events':events})
 
 def fault(request, fault):
     

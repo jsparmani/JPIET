@@ -13,3 +13,43 @@ class HomeImageForm(forms.Form):
 	    self.fields['carousel_image3'] = forms.ImageField(label='Carousel Image 3', initial=home_image.carousel_image3)
 	    self.fields['carousel_image4'] = forms.ImageField(label='Carousel Image 4', initial=home_image.carousel_image4)
 	    self.fields['side_image'] = forms.ImageField(label='Side Image', initial=home_image.side_image)
+
+
+
+
+class StatisticsForm(forms.Form):
+
+	def __init__(self, *args, **kwargs):
+	    super(StatisticsForm, self).__init__(*args, **kwargs)
+	    statistics = models.Statistics.objects.get(uid__exact=1)
+	    self.fields['students'] = forms.IntegerField(label='Students', initial=statistics.students)
+	    self.fields['area'] = forms.IntegerField(label='Area', initial=statistics.area)
+	    self.fields['alumni'] = forms.IntegerField(label='Alumni', initial=statistics.alumni)
+	    self.fields['recruiters'] = forms.IntegerField(label='Recruiters', initial=statistics.recruiters)
+	    self.fields['students_placed'] = forms.IntegerField(label='Students Placed', initial=statistics.students_placed)
+	    self.fields['years'] = forms.IntegerField(label='Years of excellency', initial=statistics.years)
+
+
+
+class NoticeForm(forms.ModelForm):
+
+	class Meta():
+
+		model = models.Notice
+		exclude = ['created_at']
+
+
+class MediaForm(forms.ModelForm):
+
+	class Meta():
+
+		model = models.Media
+		fields = '__all__'
+
+
+class EventForm(forms.ModelForm):
+
+	class Meta():
+
+		model = models.Event
+		fields = '__all__'
