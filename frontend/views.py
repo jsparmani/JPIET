@@ -118,7 +118,7 @@ def edit_notice(request, pk):
 			if form.is_valid():
 				notice = models.Notice.objects.get(pk__exact=pk)
 				notice.text = form.cleaned_data['text']
-				notice.pdf = form.cleaned_data['text']
+				notice.pdf = form.cleaned_data['pdf']
 				notice.on_landing = form.cleaned_data['on_landing']
 				try:
 					notice.save()
