@@ -36,9 +36,6 @@ def change_home_image(request):
 		return redirect('fault', fault='ACCESS DENIED!')
 
 
-
-
-
 @login_required
 def change_stats(request):
 
@@ -194,7 +191,6 @@ def delete_event(request, pk):
 		return redirect('fault', fault='ACCESS DENIED!')
 
 
-
 @login_required
 def add_testimonial(request):
 
@@ -221,6 +217,7 @@ def view_testimonials(request):
 
 	testimonials = models.Testimonial.objects.all()
 	return render(request, 'frontend/view-testimonials.html', {'testimonials': testimonials})
+
 
 @login_required
 def delete_testimonial(request, pk):
@@ -278,6 +275,70 @@ def delete_recruiter(request, pk):
 	else:
 		return redirect('fault', fault='ACCESS DENIED!')
 
+
+def view_about_us(request, uid=1):
+	if uid in [1,2,3,4,5,6]:
+		msg = models.Message.objects.get(uid__exact=uid)
+		return render(request, 'frontend/view-about-us.html', {'msg':msg, 'uid':uid})
+	elif uid == 8:
+		infrastructures = models.Infrastructure.objects.all()
+		return render(request, 'frontend/view-about-us.html', {'infrastructures':infrastructures, 'uid':uid})
+
+@login_required
+def get_about_us(request):
+
+	return render(request, 'frontend/get_about_us.html')
+
+
+@login_required
+def change_message(request, uid):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.MessageForm(data=request.POST, files=request.FILES, uid=uid)
+			if form.is_valid():
+				msg = models.Message.objects.get(uid__exact=uid)
+				msg.title = forms.cleaned_data['title']
+				msg.name = forms.cleaned_data['name']
+				msg.image = forms.cleaned_data['image']
+				msg.message = forms.cleaned_data['message']
+				try:
+					msg.save()
+				except:
+					return redirect('fault', fault='Server Error')
+				return redirect('success', success='Message changed successfully')
+			else:
+				return redirect('fault', fault='Server Error')
+		else:
+			form = forms.MessageForm(uid=uid)
+			return render(request, 'frontend/change-message.html', {'form':form})
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+
+@login_required
+def add_infrastructure(request):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.InfrastructureForm(request.POST, request.FILES)
+			if form.is_valid():
+				form.save()
+				return redirect('success', success='Infrastructure created successfully')
+			else:
+				return redirect('fault', fault='Server Error')
+		else:
+
+			form = forms.InfrastructureForm()
+			return render(request, 'frontend/add-infrastructure.html', {'form':form})
+
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
 
 
 

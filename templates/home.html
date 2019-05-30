@@ -9,6 +9,7 @@
     <img src="{{ home_image.carousel_image4.url }}" height="100" width="100"><br>
     <img src="{{ home_image.side_image.url }}" height="100" width="100">
     <br><br><br>
+    <h3>Statistics</h3>
     Students: {{stats.students}}<br>
     Area: {{stats.area}} sq. mt.<br>
     Alumni: {{stats.alumni}}<br>
@@ -16,34 +17,39 @@
     Students Placed: {{stats.students_placed}}<br>
     Years of Excellency: {{stats.years}}<br>
     <br><br><br>
+    <h3>Notices</h3>
     {% for notice in notices %}
         {% if forloop.counter|count4 %}
             <a href="{{ notice.pdf.url }}">{{ notice.text }}</a>
         {% endif %}
     {% endfor %}
     <br><br><br>
+    <h3>Media Coverage</h3>
     {% for media in medias %}
         {% if forloop.counter|count4 %}
             <img src="{{ media.pic.url }}" height="100" width="100">
         {% endif %}
     {% endfor %}
     <br><br><br>
+    <h3>Events</h3>
     {% for event in events %}
         {% if forloop.counter|count4 %}
-            <h3>{{event.heading}}</h3>
+            <h4>{{event.heading}}</h4>
             <img src="{{ event.image.url }}" height="100" width="100">
             <p>{{event.details}}</p>
         {% endif %}
     {% endfor %}
     <br><br><br>
+    <h3>Testimonials</h3>
     {% for testimonial in testimonials %}
         {% if forloop.counter|count4 %}
-            <h3>{{testimonial.name}}</h3>
+            <h4>{{testimonial.name}}</h4>
             <img src="{{ testimonial.image.url }}" height="100" width="100">
             <p>{{testimonial.text}}</p>
         {% endif %}
     {% endfor %}
     <br><br><br>
+    <h3>Recruiters</h3>
     {% for recruiter in recruiters %}
         {% if forloop.counter|count4 %}
             <img src="{{ recruiter.image.url }}" height="100" width="100">

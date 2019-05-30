@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+	<ul>
+		<a href="{% url 'frontend:view_about_us' uid=1 %}"><li>Overview</li></a>
+		<a href="{% url 'frontend:view_about_us' uid=2 %}"><li>Chairman's Message</li></a>
+		<a href="{% url 'frontend:view_about_us' uid=3 %}"><li>President's Message</li></a>
+		<a href="{% url 'frontend:view_about_us' uid=4 %}"><li>Secretary's Message</li></a>
+		<a href="{% url 'frontend:view_about_us' uid=5 %}"><li>Joint Secretary's Message</li></a>
+		<a href="{% url 'frontend:view_about_us' uid=6 %}"><li>Director's Message</li></a>
+		<a href="{% url 'frontend:view_about_us' uid=8 %}"><li>Infrastructure</li></a>
+	</ul>
+	{% if uid == 7 %}
+	{% elif uid == 8 %}
+		<br><br>
+		{% for infra in infrastructures %}
+			<h4>{{ infra.title }}</h4>
+			<img src="{{ infra.image.url }}" height="100" width="100">
+			<p>{{infra.text}}</p>
+			<br>
+
+		{% endfor %}
+	{% else %}
+		<br><br>
+		<h3>{{msg.title}}</h3>
+		<h4>{{msg.name}}</h4>
+		<img src="{{ msg.image.url }}" height="100" width="100">
+		<p>{{msg.message}}</p>
+
+	{% endif %}
+{% endblock %}

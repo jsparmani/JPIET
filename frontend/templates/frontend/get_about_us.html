@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+	<ol>
+		<a href="{% url 'frontend:change_message' uid=1 %}"><li>Overview</li></a>
+		<a href="{% url 'frontend:change_message' uid=2 %}"><li>Chairman's Message</li></a>
+		<a href="{% url 'frontend:change_message' uid=3 %}"><li>President's Message</li></a>
+		<a href="{% url 'frontend:change_message' uid=4 %}"><li>Secretary's Message</li></a>
+		<a href="{% url 'frontend:change_message' uid=5 %}"><li>Joint Secretary's Message</li></a>
+		<a href="{% url 'frontend:change_message' uid=6 %}"><li>Director's Message</li></a>
+	</ol>
+{% endblock %}

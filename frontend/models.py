@@ -83,4 +83,36 @@ class Recruiter(models.Model):
 
 
 
+##############ABOUT US#################
+
+class Message(models.Model):
+
+	uid = models.PositiveIntegerField(unique=True, blank=False)
+	title = models.CharField(max_length=100, blank=False)
+	name = models.CharField(max_length=100, blank=False)
+	image = models.ImageField(upload_to='images/message', blank=False)
+	message = models.TextField(blank=False)
+
+
+	def __str__(self):
+		return self.title
+
+	class Meta():
+
+		ordering = ['uid']
+
+
+class Infrastructure(models.Model):
+
+	title = models.CharField(max_length=100, blank=False) 
+	image = models.ImageField(upload_to='images/infrastructure', blank=False)
+	text = models.TextField(blank=False)
+
+	class Meta():
+
+		ordering = ['pk']
+
+	def __str__(self):
+		return self.title
+
 

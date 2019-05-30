@@ -5,3 +5,9 @@ from . import models
 
 admin.site.register(models.HomeImage)
 admin.site.register(models.Statistics)
+admin.site.register(models.Notice)
+admin.site.register(models.Media)
+admin.site.register(models.Event)
+admin.site.register(models.Testimonial)
+admin.site.register(models.Recruiter)
+admin.site.register(models.Message)
