@@ -31,4 +31,13 @@ urlpatterns = [
     path('edit-infrastructure/<int:pk>/', views.edit_infrastructure, name='edit_infrastructure'),
     path('delete-infrastructure/<int:pk>/', views.delete_infrastructure, name='delete_infrastructure'),
     path('change-vision-mission/', views.change_vision_mission, name='change_vision_mission'),
+    path('add-faculty/', views.add_faculty, name='add_faculty'),
+    path('view-faculties/', views.view_faculties, name='view_faculties'),
+    path('view-faculty/<int:pk>/', views.view_faculty, name='view_faculty'),
+    path('delete-faculty/<int:pk>/', views.delete_faculty, name='delete_faculty'),
+    path('edit-faculty/<int:pk>/', views.edit_faculty, name='edit_faculty'),
+    path('add-department/', views.add_department, name='add_department'),
+    path('add-lab/', views.add_lab, name='add_lab'),
+    path('view-department-list/', views.view_department_list, name='view_department_list'),
+    path('view-department/<int:pk>/', views.view_department, name='view_department'),
 ]

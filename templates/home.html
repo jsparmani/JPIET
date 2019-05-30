@@ -9,6 +9,9 @@
     <img src="{{ home_image.carousel_image4.url }}" height="100" width="100"><br>
     <img src="{{ home_image.side_image.url }}" height="100" width="100">
     <br><br><br>
+    <h3>About Us</h3>
+    <p>{{about_us.message|truncatechars:500}} <a href="{% url 'frontend:view_about_us' uid=1 %}">Read More</a></p>
+    <br><br><br>
     <h3>Statistics</h3>
     Students: {{stats.students}}<br>
     Area: {{stats.area}} sq. mt.<br>
