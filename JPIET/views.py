@@ -15,6 +15,7 @@ def home(request):
     events = fro_models.Event.objects.all().filter(on_landing__exact=True)
     testimonials = fro_models.Testimonial.objects.all()
     recruiters = fro_models.Recruiter.objects.all().filter(on_landing__exact=True)
+    
     return render(request, 'home.html', {'home_image':home_image, 'stats':stats, 'notices':notices, 'medias':medias, 'events':events, 'testimonials':testimonials, 'recruiters':recruiters})
 
 def fault(request, fault):
