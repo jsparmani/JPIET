@@ -5,8 +5,8 @@
     {% if user.pk in admin_all or user.pk in frontend_all %}
         {% for notice in notices %}
         <a href="{{ notice.pdf.url }}">{{ notice.text }}</a><Br>
-        
-         <a href="{% url 'frontend:delete_notice' pk=notice.pk %}">x</a> <br>
+         <a href="{% url 'frontend:delete_notice' pk=notice.pk %}">x</a> 
+         <a href="{% url 'frontend:edit_notice' pk=notice.pk %}">Edit</a> <br>
         {% endfor %}
     {% endif %}
     {% endif %}

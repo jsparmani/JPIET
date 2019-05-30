@@ -107,6 +107,30 @@ def delete_notice(request, pk):
 	else:
 		return redirect('fault', fault='ACCESS DENIED!')
 
+
+@login_required
+def edit_notice(request, pk):
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.EditNoticeForm(data=request.POST, files=request.FILES, pk=pk)
+			if form.is_valid():
+				notice = models.Notice.objects.get(pk__exact=pk)
+				notice.text = form.cleaned_data['text']
+				notice.pdf = form.cleaned_data['text']
+				notice.on_landing = form.cleaned_data['on_landing']
+				try:
+					notice.save()
+				except:
+					return redirect('fault', fault='Server Error')
+				return redirect('success', success='Notice changed successfully')
+		else:
+			form = forms.EditNoticeForm(pk=pk)
+			return render(request, 'frontend/add-notice.html', {'form':form})
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
 @login_required
 def add_media(request):
 
@@ -190,6 +214,30 @@ def delete_event(request, pk):
 	else:
 		return redirect('fault', fault='ACCESS DENIED!')
 
+
+@login_required
+def edit_event(request, pk):
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.EditEventForm(data=request.POST, files=request.FILES, pk=pk)
+			if form.is_valid():
+				event = models.Event.objects.get(pk__exact=pk)
+				event.heading = form.cleaned_data['heading']
+				event.image = form.cleaned_data['image']
+				event.details = form.cleaned_data['details']
+				event.on_landing = form.cleaned_data['on_landing']
+				try:
+					event.save()
+				except:
+					return redirect('fault', fault='Server Error')
+				return redirect('success', success='Event changed successfully')
+		else:
+			form = forms.EditEventForm(pk=pk)
+			return render(request, 'frontend/add-event.html', {'form':form})
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
 
 @login_required
 def add_testimonial(request):

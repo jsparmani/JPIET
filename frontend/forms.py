@@ -36,6 +36,17 @@ class NoticeForm(forms.ModelForm):
         exclude = ['created_at']
 
 
+
+class EditNoticeForm(forms.Form):
+
+    def __init__(self, pk, *args, **kwargs):
+        super(EditNoticeForm, self).__init__(*args, **kwargs)
+        notice = models.Notice.objects.get(pk__exact=pk)
+        self.fields['pdf'] = forms.FileField(label='PDF', initial=notice.pdf)
+        self.fields['text'] = forms.CharField(label='Text', initial=notice.text, widget=forms.Textarea)
+        self.fields['on_landing'] = forms.BooleanField(label='Show on Landing Page', initial=notice.on_landing)
+
+
 class MediaForm(forms.ModelForm):
 
     class Meta():
@@ -50,6 +61,17 @@ class EventForm(forms.ModelForm):
 
         model = models.Event
         fields = '__all__'
+
+
+class EditEventForm(forms.Form):
+
+    def __init__(self, pk, *args, **kwargs):
+        super(EditEventForm, self).__init__(*args, **kwargs)
+        event = models.Event.objects.get(pk__exact=pk)
+        self.fields['heading'] = forms.CharField(label='Heading', initial=event.heading)
+        self.fields['image'] = forms.ImageField(label='Image', initial=event.image)
+        self.fields['details'] = forms.CharField(label='Details', initial=event.details, widget=forms.Textarea)
+        self.fields['on_landing'] = forms.BooleanField(label='Show on Landing Page', initial=event.on_landing)
 
 
 class TestimonialForm(forms.ModelForm):
