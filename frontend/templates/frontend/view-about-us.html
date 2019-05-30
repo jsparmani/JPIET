@@ -52,6 +52,12 @@
 			<h4>{{ infra.title }}</h4>
 			<img src="{{ infra.image.url }}" height="100" width="100">
 			<p>{{infra.text}}</p>
+			{% if user.is_authenticated %}
+				{% if user.pk in admin_all or user.pk in frontend_all %}
+				<a href="{% url 'frontend:delete_infrastructure' pk=infra.pk %}">x</a>
+				<a href="{% url 'frontend:edit_infrastructure' pk=infra.pk %}">Edit</a>
+				{% endif %}
+			{% endif %}
 			<br>
 
 		{% endfor %}

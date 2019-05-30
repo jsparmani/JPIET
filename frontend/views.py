@@ -235,6 +235,30 @@ def delete_testimonial(request, pk):
 
 
 @login_required
+def edit_testimonial(request, pk):
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.EditTestimonialForm(data=request.POST, files=request.FILES, pk=pk)
+			if form.is_valid():
+				testimonial = models.Testimonial.objects.get(pk__exact=pk)
+				testimonial.name = form.cleaned_data['name']
+				testimonial.image = form.cleaned_data['image']
+				testimonial.text = form.cleaned_data['text']
+				try:
+					testimonial.save()
+				except:
+					return redirect('fault', fault='Server Error')
+				return redirect('success', success='Testimonial changed successfully')
+		else:
+			form = forms.EditTestimonialForm(pk=pk)
+			return render(request, 'frontend/add-testimonial.html', {'form':form})
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+@login_required
 def add_recruiter(request):
 
 	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
@@ -340,6 +364,45 @@ def add_infrastructure(request):
 			form = forms.InfrastructureForm()
 			return render(request, 'frontend/add-infrastructure.html', {'form':form})
 
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+@login_required
+def delete_infrastructure(request, pk):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		try:
+			models.Infrastructure.objects.get(pk__exact=pk).delete()
+			return redirect('frontend:view_about_us', uid=8)
+		except:
+			return redirect('fault', fault="Some error occured")
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+@login_required
+def edit_infrastructure(request, pk):
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.EditInfrastructureForm(data=request.POST, files=request.FILES, pk=pk)
+			if form.is_valid():
+				infra = models.Infrastructure.objects.get(pk__exact=pk)
+				infra.title = form.cleaned_data['title']
+				infra.image = form.cleaned_data['image']
+				infra.text = form.cleaned_data['text']
+				try:
+					infra.save()
+				except:
+					return redirect('fault', fault='Server Error')
+				return redirect('success', success='Infrastructure changed successfully')
+		else:
+			form = forms.EditInfrastructureForm(pk=pk)
+			return render(request, 'frontend/add-infrastructure.html', {'form':form})
 	else:
 		return redirect('fault', fault='ACCESS DENIED!')
 

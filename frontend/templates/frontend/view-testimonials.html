@@ -7,7 +7,9 @@
         {{testimonial.name}}<br>
         <img src="{{ testimonial.image.url }}" height="100" width="100"><Br>
         {{testimonial.text}}<br>
-         <a href="{% url 'frontend:delete_testimonial' pk=testimonial.pk %}">x</a> <br>
+         <a href="{% url 'frontend:delete_testimonial' pk=testimonial.pk %}">x</a>
+         <a href="{% url 'frontend:edit_testimonial' pk=testimonial.pk %}">Edit</a>
+          <br>
         {% endfor %}
     {% endif %}
     {% endif %}
