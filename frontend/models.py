@@ -116,3 +116,22 @@ class Infrastructure(models.Model):
 		return self.title
 
 
+
+class VisionMission(models.Model):
+
+	uid = models.PositiveIntegerField(unique=True)
+	text_above = models.TextField(blank=True)
+	bullet1 = models.TextField(blank=True)
+	bullet2 = models.TextField(blank=True)
+	bullet3 = models.TextField(blank=True)
+	bullet4 = models.TextField(blank=True)
+	bullet5 = models.TextField(blank=True)
+	bullet6 = models.TextField(blank=True)
+	bullet7 = models.TextField(blank=True)
+	bullet8 = models.TextField(blank=True)
+	bullet9 = models.TextField(blank=True)
+	bullet10 = models.TextField(blank=True)
+	text_below = models.TextField(blank=True)
+
+
+

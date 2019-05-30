@@ -7,9 +7,45 @@
 		<a href="{% url 'frontend:view_about_us' uid=4 %}"><li>Secretary's Message</li></a>
 		<a href="{% url 'frontend:view_about_us' uid=5 %}"><li>Joint Secretary's Message</li></a>
 		<a href="{% url 'frontend:view_about_us' uid=6 %}"><li>Director's Message</li></a>
+		<a href="{% url 'frontend:view_about_us' uid=7 %}"><li>Vision and Mission</li></a>
 		<a href="{% url 'frontend:view_about_us' uid=8 %}"><li>Infrastructure</li></a>
 	</ul>
 	{% if uid == 7 %}
+		<br><br>
+		<p>{{vis.text_above}}</p>
+		<ul>
+			{% if vis.bullet1 %}
+				<li>{{vis.bullet1}}</li>
+			{% endif %}
+			{% if vis.bullet2 %}
+				<li>{{vis.bullet2}}</li>
+			{% endif %}
+			{% if vis.bullet3 %}
+				<li>{{vis.bullet3}}</li>
+			{% endif %}
+			{% if vis.bullet4 %}
+				<li>{{vis.bullet4}}</li>
+			{% endif %}
+			{% if vis.bullet5 %}
+				<li>{{vis.bullet5}}</li>
+			{% endif %}
+			{% if vis.bullet6 %}
+				<li>{{vis.bullet6}}</li>
+			{% endif %}
+			{% if vis.bullet7 %}
+				<li>{{vis.bullet7}}</li>
+			{% endif %}
+			{% if vis.bullet8 %}
+				<li>{{vis.bullet8}}</li>
+			{% endif %}
+			{% if vis.bullet9 %}
+				<li>{{vis.bullet9}}</li>
+			{% endif %}
+			{% if vis.bullet10 %}
+				<li>{{vis.bullet10}}</li>
+			{% endif %}
+		</ul>
+		<p>{{vis.text_below}}</p>
 	{% elif uid == 8 %}
 		<br><br>
 		{% for infra in infrastructures %}

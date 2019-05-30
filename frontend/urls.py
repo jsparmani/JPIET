@@ -25,4 +25,5 @@ urlpatterns = [
     path('change-message/<int:uid>/', views.change_message, name='change_message'),
     path('view-about-us/<int:uid>/', views.view_about_us, name='view_about_us'),
     path('add_infrastructure/', views.add_infrastructure, name='add_infrastructure'),
+    path('change-vision-mission/', views.change_vision_mission, name='change_vision_mission'),
 ]

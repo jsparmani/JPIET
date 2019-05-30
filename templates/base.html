@@ -20,6 +20,7 @@
     <a href="{% url 'frontend:view_about_us' uid=5 %}">Joint Secretary's Message</a>
     <a href="{% url 'frontend:view_about_us' uid=6 %}">Director's Message</a>
     <a href="{% url 'frontend:view_about_us' uid=8 %}">Infrastructure</a>
+    <a href="{% url 'frontend:view_about_us' uid=7 %}">Vision and Mission</a>
     <br>
     <a href="{% url 'frontend:view_recruiters' %}">Recruiters</a>
     <a href="{% url 'frontend:view_testimonials' %}">Testimonials</a>
@@ -43,6 +44,8 @@
             <br>
             <a href="{% url 'frontend:get_about_us' %}">Change Messages</a>
             <a href="{% url 'frontend:add_infrastructure' %}">Add Infrastructure</a>
+            <a href="{% url 'frontend:change_vision_mission' %}">Change Vision & Mission</a>
+
         {% endif %}
         {% if user.pk in frontend_all %}
             <br>
@@ -56,6 +59,8 @@
             <br>
             <a href="{% url 'frontend:get_about_us' %}">Change Messages</a>
             <a href="{% url 'frontend:add_infrastructure' %}">Add Infrastructure</a>
+            <a href="{% url 'frontend:change_vision_mission' %}">Change Vision & Mission</a>
+
         {% endif %}
         
 

@@ -280,6 +280,9 @@ def view_about_us(request, uid=1):
 	if uid in [1,2,3,4,5,6]:
 		msg = models.Message.objects.get(uid__exact=uid)
 		return render(request, 'frontend/view-about-us.html', {'msg':msg, 'uid':uid})
+	elif uid == 7:
+		vis = models.VisionMission.objects.get(uid__exact=1)
+		return render(request, 'frontend/view-about-us.html', {'vis':vis, 'uid':uid})
 	elif uid == 8:
 		infrastructures = models.Infrastructure.objects.all()
 		return render(request, 'frontend/view-about-us.html', {'infrastructures':infrastructures, 'uid':uid})
@@ -340,6 +343,40 @@ def add_infrastructure(request):
 	else:
 		return redirect('fault', fault='ACCESS DENIED!')
 
+
+@login_required
+def change_vision_mission(request):
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.VisionMissionForm(request.POST)
+			if form.is_valid():
+				vis = models.VisionMission.objects.get(uid__exact=1)
+				vis.text_above = form.cleaned_data['text_above']
+				vis.bullet1 = form.cleaned_data['bullet1']
+				vis.bullet2 = form.cleaned_data['bullet2']
+				vis.bullet3 = form.cleaned_data['bullet3']
+				vis.bullet4 = form.cleaned_data['bullet4']
+				vis.bullet5 = form.cleaned_data['bullet5']
+				vis.bullet6 = form.cleaned_data['bullet6']
+				vis.bullet7 = form.cleaned_data['bullet7']
+				vis.bullet8 = form.cleaned_data['bullet8']
+				vis.bullet9 = form.cleaned_data['bullet9']
+				vis.bullet10 = form.cleaned_data['bullet10']
+				vis.text_above = form.cleaned_data['text_above']
+				try:
+					vis.save()
+				except:
+					return redirect('fault', fault = 'Server Error')
+				return redirect('success', success = 'Changes completed successfully')
+			else:
+				return redirect('fault', fault='Server Error')
+		else:
+			form = forms.VisionMissionForm()
+			return render(request, 'frontend/change-vision-mission.html', {'form':form})
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
 
 
 
