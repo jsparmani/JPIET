@@ -116,7 +116,6 @@ class Infrastructure(models.Model):
 		return self.title
 
 
-
 class VisionMission(models.Model):
 
 	uid = models.PositiveIntegerField(unique=True)

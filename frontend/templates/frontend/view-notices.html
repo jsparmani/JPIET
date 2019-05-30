@@ -2,17 +2,17 @@
 {% block content %}
 <br>
     {% if user.is_authenticated %}
-    {% if user.pk in admin_all or user.pk in frontend_all %}
-        {% for notice in notices %}
-        <a href="{{ notice.pdf.url }}">{{ notice.text }}</a><Br>
-         <a href="{% url 'frontend:delete_notice' pk=notice.pk %}">x</a> 
-         <a href="{% url 'frontend:edit_notice' pk=notice.pk %}">Edit</a> <br>
-        {% endfor %}
-    {% endif %}
+        {% if user.pk in admin_all or user.pk in frontend_all %}
+            {% for notice in notices %}
+                    <a href="{{ notice.pdf.url }}">{{ notice.text }}</a><Br>
+                    <a href="{% url 'frontend:delete_notice' pk=notice.pk %}">x</a> 
+                    <a href="{% url 'frontend:edit_notice' pk=notice.pk %}">Edit</a> <br>
+            {% endfor %}
+        {% endif %}
     {% endif %}
     {% if not user.is_authenticated %}
-    {% for notice in notices %}
-        <a href="{{ notice.pdf.url }}">{{ notice.text }}</a><Br>
-    {% endfor %}
+        {% for notice in notices %}
+            <a href="{{ notice.pdf.url }}">{{ notice.text }}</a><br>
+        {% endfor %}
     {% endif %}
 {% endblock %}
