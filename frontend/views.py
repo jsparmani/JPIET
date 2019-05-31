@@ -708,3 +708,29 @@ def delete_department(request, pk):
 		return redirect('fault', fault='ACCESS DENIED!')
 
 
+@login_required
+def add_training_placement(request):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.TrainingPlacementForm(request.POST, request.FILES)
+			if form.is_valid():
+				form.save()
+				return redirect('success', success='TrainingPlacement created successfully')
+			else:
+				return redirect('fault', fault='Server Error')
+		else:
+
+			form = forms.TrainingPlacementForm()
+			return render(request, 'frontend/add-training-placement.html', {'form':form})
+
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+def view_training_placement(request):
+
+	training_placement_list = models.TrainingPlacement.objects.all()
+	return render(request, 'frontend/view-training-placement.html', {'training_placement_list':training_placement_list})

@@ -152,15 +152,16 @@ class Department(models.Model):
 
 		ordering = ['pk']
 
+
 class Lab(models.Model):
 
-	department = models.ForeignKey('frontend.Department', related_name='labs', on_delete = models.DO_NOTHING)
+	department = models.ForeignKey('frontend.Department', related_name='labs', on_delete = models.CASCADE)
 	lab = models.CharField(max_length=200, blank=False)
 
 
 class Faculty(models.Model):
 
-    department = models.ForeignKey('frontend.Department', related_name='faculties', on_delete=models.DO_NOTHING)
+    department = models.ForeignKey('frontend.Department', related_name='faculties', on_delete=models.CASCADE)
     name = models.CharField(max_length=50, blank=False)
     designation = models.CharField(max_length=50, blank=False)
     contact_num = models.PositiveIntegerField(blank=False)
@@ -177,6 +178,17 @@ class Faculty(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class TrainingPlacement(models.Model):
+
+	heading = models.CharField(max_length=100, blank=False)
+	text = models.TextField(blank=False)
+	image = models.ImageField(upload_to='images/training_placement', blank=False)
+
+	class Meta():
+
+		ordering = ['-pk']
 
 
 

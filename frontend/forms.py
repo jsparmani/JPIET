@@ -160,6 +160,7 @@ class DepartmentForm(forms.ModelForm):
         model = models.Department
         fields = '__all__'
 
+
 class EditDepartmentForm(forms.Form):
 
     def __init__(self, pk, *args, **kwargs):
@@ -216,3 +217,9 @@ class EditLabForm(forms.Form):
         self.fields['lab'] = forms.CharField(label='lab', initial=lab.lab)
         
         
+class TrainingPlacementForm(forms.ModelForm):
+
+    class Meta():
+
+        model = models.TrainingPlacement
+        fields = '__all__'

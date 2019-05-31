@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+    {% for tp in training_placement_list %}
+        {{tp.heading}}<br>
+        <img src="{{ tp.image.url }}" height="100" width="100"><Br>
+        {{tp.text}}<br><br><br>
+    {% endfor %}
+{% endblock %}
