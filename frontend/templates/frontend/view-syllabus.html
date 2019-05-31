@@ -3,5 +3,11 @@
 <br><br><br>        
     {% for syllabus in syllabus_list %}
         <a href="{{syllabus.pdf.url}}">{{syllabus.course.department.name}} - {{syllabus.course.name}} - {{syllabus.semester}}</a><br>
+        {% if user.is_authenticated %}
+            {% if user.pk in admin_all or user.pk in frontend_all %}
+                <a href="{% url 'frontend:edit_syllabus' pk=syllabus.pk %}">Edit</a>
+                <a href="{% url 'frontend:delete_syllabus' pk=syllabus.pk %}">x</a>
+            {% endif %}
+        {% endif %}
     {% endfor %}
 {% endblock %}

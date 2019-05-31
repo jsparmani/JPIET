@@ -166,7 +166,7 @@ class EditDepartmentForm(forms.Form):
     def __init__(self, pk, *args, **kwargs):
         super(EditDepartmentForm, self).__init__(*args, **kwargs)
         department = models.Department.objects.get(pk__exact=pk)
-        self.fields['name'] = forms.CharField(label='name', initial=department.name)
+        self.fields['name'] = forms.CharField(label='Name', initial=department.name)
         self.fields['image'] = forms.ImageField(label='Image', initial=department.image)
         self.fields['text'] = forms.CharField(label='Text', initial=department.text, widget=forms.Textarea)
 
@@ -225,12 +225,35 @@ class TrainingPlacementForm(forms.ModelForm):
         fields = '__all__'
 
 
+class EditTrainingPlacementForm(forms.Form):
+
+    def __init__(self, pk, *args, **kwargs):
+        super(EditTrainingPlacementForm, self).__init__(*args, **kwargs)
+        tp = models.TrainingPlacement.objects.get(pk__exact=pk)
+        self.fields['heading'] = forms.CharField(label='Heading', initial=tp.heading)
+        self.fields['image'] = forms.ImageField(label='Image', initial=tp.image)
+        self.fields['text'] = forms.CharField(label='Text', initial=tp.text, widget=forms.Textarea)
+
+
 class CourseForm(forms.ModelForm):
 
     class Meta():
 
         model = models.Course
         fields = '__all__'
+
+class EditCourseForm(forms.Form):
+
+    def __init__(self, pk, *args, **kwargs):
+        super(EditCourseForm, self).__init__(*args, **kwargs)
+        course = models.Course.objects.get(pk__exact=pk)
+        DEPARTMENT_CHOICES = []
+        department_list = models.Department.objects.all()
+        for department in department_list:
+            DEPARTMENT_CHOICES.append((department.pk, department.name))
+        self.fields['department'] = forms.ChoiceField(choices=DEPARTMENT_CHOICES)
+        self.fields['name'] = forms.CharField(label='lab', initial=course.name)
+        self.fields['semesters'] = forms.IntegerField(label='Semesters', initial=course.semesters)
 
 class SyllabusForm(forms.ModelForm):
 
@@ -240,12 +263,40 @@ class SyllabusForm(forms.ModelForm):
         fields = '__all__'
 
 
+class EditSyllabusForm(forms.Form):
+
+    def __init__(self, pk, *args, **kwargs):
+        super(EditSyllabusForm, self).__init__(*args, **kwargs)
+        syllabus = models.Syllabus.objects.get(pk__exact=pk)
+        COURSE_CHOICES = []
+        course_list = models.Course.objects.all()
+        for course in course_list:
+            COURSE_CHOICES.append((course.pk, course.name))
+        self.fields['course'] = forms.ChoiceField(choices=COURSE_CHOICES)
+        self.fields['semester'] = forms.IntegerField(label='Semester', initial=syllabus.semester)
+        self.fields['pdf'] = forms.FileField(label='PDF', initial=syllabus.pdf)
+
+
 class ExamForm(forms.ModelForm):
 
     class Meta():
 
         model = models.Exam
         fields = '__all__'
+
+class EditExamForm(forms.Form):
+
+    def __init__(self, pk, *args, **kwargs):
+        super(EditExamForm, self).__init__(*args, **kwargs)
+        exam = models.Exam.objects.get(pk__exact=pk)
+        COURSE_CHOICES = []
+        course_list = models.Course.objects.all()
+        for course in course_list:
+            COURSE_CHOICES.append((course.pk, course.name))
+        self.fields['course'] = forms.ChoiceField(choices=COURSE_CHOICES)
+        self.fields['semester'] = forms.IntegerField(label='Semester', initial=exam.semester)
+        self.fields['date'] = forms.DateField(label='Date', initial=exam.date)
+        self.fields['pdf'] = forms.FileField(label='PDF', initial=exam.pdf)
 
 
 class HomePDFForm(forms.Form):

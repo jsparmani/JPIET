@@ -3,6 +3,12 @@
 <br><br><br>
 
     {% for course in course_list %}
-        <a href="{% url 'frontend:view_department' pk=course.department.pk %}">{{course.department.name}} - {{course.name}}</a><br>
+        <a href="{% url 'frontend:view_department' pk=course.department.pk %}">{{course.department.name}} - {{course.name}}</a>
+        {% if user.is_authenticated %}
+            {% if user.pk in admin_all or user.pk in frontend_all %}
+                <a href="{% url 'frontend:edit_course' pk=course.pk %}">Edit</a>
+                <a href="{% url 'frontend:delete_course' pk=course.pk %}">x</a><br>
+            {% endif %}
+        {% endif %}
     {% endfor %}
 {% endblock %}

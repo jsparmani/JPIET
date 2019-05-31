@@ -737,6 +737,45 @@ def view_training_placement(request):
 
 
 @login_required
+def edit_training_placement(request, pk):
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.EditTrainingPlacementForm(data=request.POST, files=request.FILES, pk=pk)
+			if form.is_valid():
+				tp = models.TrainingPlacement.objects.get(pk__exact=pk)
+				tp.heading = form.cleaned_data['heading']
+				tp.image = form.cleaned_data['image']
+				tp.text = form.cleaned_data['text']
+				try:
+					tp.save()
+				except:
+					return redirect('fault', fault='Server Error')
+				return redirect('success', success='Training & Placement data changed successfully')
+		else:
+			form = forms.EditTrainingPlacementForm(pk=pk)
+			return render(request, 'frontend/add-training-placement.html', {'form':form})
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+@login_required
+def delete_training_placement(request, pk):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		try:
+			models.TrainingPlacement.objects.get(pk__exact=pk).delete()
+			return redirect('frontend:view_training_placement')
+		except:
+			return redirect('fault', fault="Some error occured")
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+@login_required
 def add_course(request):
 
 	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
@@ -764,6 +803,47 @@ def view_courses(request):
 
 	course_list = models.Course.objects.all()
 	return render(request, 'frontend/view-courses.html', {'course_list':course_list})
+
+
+
+@login_required
+def edit_course(request, pk):
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.EditCourseForm(data=request.POST, files=request.FILES, pk=pk)
+			if form.is_valid():
+				course = models.Course.objects.get(pk__exact=pk)
+				course.department = models.Department.objects.get(pk__exact=form.cleaned_data['department'])
+				course.name = form.cleaned_data['name']
+				course.semesters = form.cleaned_data['semesters']
+				try:
+					course.save()
+				except:
+					return redirect('fault', fault='Server Error')
+				return redirect('success', success='Course data changed successfully')
+		else:
+			form = forms.EditCourseForm(pk=pk)
+			return render(request, 'frontend/add-course.html', {'form':form})
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+
+@login_required
+def delete_course(request, pk):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		try:
+			models.Course.objects.get(pk__exact=pk).delete()
+			return redirect('frontend:view_courses')
+		except:
+			return redirect('fault', fault="Some error occured")
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
 
 
 
@@ -796,6 +876,45 @@ def view_syllabus(request):
 
 
 @login_required
+def edit_syllabus(request, pk):
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.EditSyllabusForm(data=request.POST, files=request.FILES, pk=pk)
+			if form.is_valid():
+				syllabus = models.Syllabus.objects.get(pk__exact=pk)
+				syllabus.course = models.Course.objects.get(pk__exact=form.cleaned_data['course'])
+				syllabus.semester = form.cleaned_data['semester']
+				syllabus.pdf = form.cleaned_data['pdf']
+				try:
+					syllabus.save()
+				except:
+					return redirect('fault', fault='Server Error')
+				return redirect('success', success='Syllabus changed successfully')
+		else:
+			form = forms.EditSyllabusForm(pk=pk)
+			return render(request, 'frontend/add-syllabus.html', {'form':form})
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+@login_required
+def delete_syllabus(request, pk):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		try:
+			models.Syllabus.objects.get(pk__exact=pk).delete()
+			return redirect('frontend:view_syllabus')
+		except:
+			return redirect('fault', fault="Some error occured")
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+@login_required
 def add_exam(request):
 
 	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
@@ -820,6 +939,46 @@ def view_exam(request):
 
 	exam_list = models.Exam.objects.all()
 	return render(request, 'frontend/view-exam.html', {'exam_list':exam_list})
+
+
+@login_required
+def edit_exam(request, pk):
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.EditExamForm(data=request.POST, files=request.FILES, pk=pk)
+			if form.is_valid():
+				exam = models.Exam.objects.get(pk__exact=pk)
+				exam.course = models.Course.objects.get(pk__exact=form.cleaned_data['course'])
+				exam.semester = form.cleaned_data['semester']
+				exam.date = form.cleaned_data['date']
+				exam.pdf = form.cleaned_data['pdf']
+				try:
+					exam.save()
+				except:
+					return redirect('fault', fault='Server Error')
+				return redirect('success', success='Exam data changed successfully')
+		else:
+			form = forms.EditExamForm(pk=pk)
+			return render(request, 'frontend/add-exam.html', {'form':form})
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+@login_required
+def delete_exam(request, pk):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		try:
+			models.Exam.objects.get(pk__exact=pk).delete()
+			return redirect('frontend:view_exam')
+		except:
+			return redirect('fault', fault="Some error occured")
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
 
 
 @login_required

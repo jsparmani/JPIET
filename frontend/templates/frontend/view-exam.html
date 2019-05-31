@@ -3,5 +3,11 @@
 <br><br><br>        
     {% for exam in exam_list %}
         <a href="{{exam.pdf.url}}">{{exam.course.department.name}} - {{exam.course.name}} - {{exam.semester}} - {{exam.date}}</a><br>
+        {% if user.is_authenticated %}
+            {% if user.pk in admin_all or user.pk in frontend_all %}
+                <a href="{% url 'frontend:edit_exam' pk=exam.pk %}">Edit</a>
+                <a href="{% url 'frontend:delete_exam' pk=exam.pk %}">x</a>
+            {% endif %}
+        {% endif %}
     {% endfor %}
 {% endblock %}

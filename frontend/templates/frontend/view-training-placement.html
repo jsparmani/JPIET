@@ -5,5 +5,11 @@
         {{tp.heading}}<br>
         <img src="{{ tp.image.url }}" height="100" width="100"><Br>
         {{tp.text}}<br><br><br>
+        {% if user.is_authenticated %}
+            {% if user.pk in admin_all or user.pk in frontend_all %}
+                <a href="{% url 'frontend:edit_training_placement' pk=tp.pk %}">Edit</a>
+                <a href="{% url 'frontend:delete_training_placement' pk=tp.pk %}">x</a>
+            {% endif %}
+        {% endif %}
     {% endfor %}
 {% endblock %}
