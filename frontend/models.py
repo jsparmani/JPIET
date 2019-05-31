@@ -134,3 +134,51 @@ class VisionMission(models.Model):
 
 
 
+
+
+##################DEPARTMENTS#####################
+
+
+class Department(models.Model):
+
+	name = models.CharField(max_length=100, blank=False)
+	image = models.ImageField(upload_to='images/department', blank=False)
+	text = models.TextField(blank=False)
+
+	def __str__(self):
+		return self.name
+		
+	class Meta():
+
+		ordering = ['pk']
+
+class Lab(models.Model):
+
+	department = models.ForeignKey('frontend.Department', related_name='labs', on_delete = models.DO_NOTHING)
+	lab = models.CharField(max_length=200, blank=False)
+
+
+class Faculty(models.Model):
+
+    department = models.ForeignKey('frontend.Department', related_name='faculties', on_delete=models.DO_NOTHING)
+    name = models.CharField(max_length=50, blank=False)
+    designation = models.CharField(max_length=50, blank=False)
+    contact_num = models.PositiveIntegerField(blank=False)
+    qualification1 = models.CharField(max_length=50, blank=False)
+    qualification2 = models.CharField(max_length=50, blank=True)
+    qualification3 = models.CharField(max_length=50, blank=True)
+    field_of_interest = models.TextField(blank=False)
+    experience = models.TextField(blank=False)
+    pic = models.ImageField(upload_to='images/faculty',blank=False)
+
+    class Meta:
+        verbose_name_plural = "Faculties"
+        ordering = ['pk']
+
+    def __str__(self):
+        return self.name
+
+
+
+
+

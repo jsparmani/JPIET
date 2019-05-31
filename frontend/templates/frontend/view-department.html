@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+	<h3>{{ department.name }}</h3>
+	<p>{{ department.text }}</p>
+	<img src="{{ department.image.url }}" height="100" width="100" >
+	<h4>Labs</h4>
+	<ul>
+		{% for lab in lab_list %}
+			<li>
+				{{ lab.lab }}
+			</li>
+
+		{% endfor %}
+	</ul>
+	<h4>Faculty</h4>
+	<ul>
+		{% for faculty in faculty_list %}
+			<li>
+				<a href="{% url 'frontend:view_faculty' pk=faculty.pk %}">{{ faculty.name }}</a>
+				{% if user.pk in admin_all %}
+					<a href="{% url 'frontend:delete_faculty' pk=faculty.pk %}">x</a>
+					<a href="{% url 'frontend:edit_faculty' pk=faculty.pk %}">Edit</a>
+				{% elif user.pk in frontend_all %}
+					<a href="{% url 'frontend:delete_faculty' pk=faculty.pk %}">x</a>
+					<a href="{% url 'frontend:edit_faculty' pk=faculty.pk %}">Edit</a>
+				{% endif %}
+			</li>
+
+		{% endfor %}
+	</ul>
+{% endblock %}

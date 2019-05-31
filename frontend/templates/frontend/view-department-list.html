@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+	<p>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</p>
+	<ol>
+		{% for department in department_list %}
+			<li>
+				<a href="{% url 'frontend:view_department' pk=department.pk %}">{{department.name}}</a>
+				{% if user.is_authenticated %}
+					{% if user.pk in admin_all or user.pk in frontend_all %}
+					<br><a href="{% url 'frontend:edit_department' pk=department.pk %}">Edit</a>
+					<br><a href="{% url 'frontend:delete_department' pk=department.pk %}">x</a>
+					{% endif %}
+				{% endif %}
+			</li>
+		{% endfor %}
+	</ol>
+{% endblock %}

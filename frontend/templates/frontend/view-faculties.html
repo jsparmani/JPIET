@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     {% for faculty in faculties %}<br>
+        {{faculty.department}}<br>
         {{faculty.name}}<br>
-        <img src="{{faculty.pic.url}}" alt="Faculty Image"><br>
+        <img src="{{faculty.pic.url}}" alt="Faculty Image" height="100" width="100"><br>
         {{faculty.designation}}<br>
         {{faculty.contact_num}}<br>
         {{faculty.qualification1}}<br>
@@ -10,8 +11,8 @@
         {{faculty.qualification3}}<br>
         {{faculty.field_of_interest}}<br>
         {{faculty.experience}}
-        <a href="{% url 'faculty:delete_faculty' pk=faculty.pk %}">x</a>
-        <a href="{% url 'faculty:edit_faculty' pk=faculty.pk %}">Edit</a>
+        <a href="{% url 'frontend:delete_faculty' pk=faculty.pk %}">x</a>
+        <a href="{% url 'frontend:edit_faculty' pk=faculty.pk %}">Edit</a>
         <br>
     {% endfor %}
 {% endblock %}

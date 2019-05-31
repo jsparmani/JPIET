@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+    {% if user.is_authenticated %}
+    {% if user.pk in admin_all or user.pk in frontend_all %}
+        {% for lab in labs_list %}
+        {{lab.department.name}} {{lab.lab}} <a href="{% url 'frontend:delete_lab' pk=lab.pk %}">x</a> 
+        <a href="{% url 'frontend:edit_lab' pk=lab.pk %}">Edit</a> <br>
+        {% endfor %}
+    {% endif %}
+    {% endif %}
+    {% if not user.is_authenticated %}
+    {% for media in medias %}
+    {{lab.department.name}} {{lab.lab}}<br>
+    {% endfor %}
+    {% endif %}
+{% endblock %}

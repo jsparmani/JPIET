@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'frontend',
-    'faculty',
-    'django_cleanup',
+    'django_cleanup'
 ]
 
 MIDDLEWARE = [

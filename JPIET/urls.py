@@ -18,7 +18,6 @@ urlpatterns = [
     path('success/<str:success>', views.success, name='success'),
     path('account/', include('account.urls', namespace='account')),
     path('frontend/', include('frontend.urls', namespace='frontend')),
-    path('faculty/', include('faculty.urls', namespace='faculty')),
     
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

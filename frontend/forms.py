@@ -151,3 +151,68 @@ class VisionMissionForm(forms.Form):
         self.fields['bullet9'] = forms.CharField(label='Bullet 9', initial=vis.bullet9, required=False)
         self.fields['bullet10'] = forms.CharField(label='Bullet 10', initial=vis.bullet10, required=False)
         self.fields['text_below'] = forms.CharField(label='Text Below', initial=vis.text_below, required=False)
+
+
+class DepartmentForm(forms.ModelForm):
+
+    class Meta():
+
+        model = models.Department
+        fields = '__all__'
+
+class EditDepartmentForm(forms.Form):
+
+    def __init__(self, pk, *args, **kwargs):
+        super(EditDepartmentForm, self).__init__(*args, **kwargs)
+        department = models.Department.objects.get(pk__exact=pk)
+        self.fields['name'] = forms.CharField(label='name', initial=department.name)
+        self.fields['image'] = forms.ImageField(label='Image', initial=department.image)
+        self.fields['text'] = forms.CharField(label='Text', initial=department.text, widget=forms.Textarea)
+
+
+class FacultyForm(forms.ModelForm):
+
+    class Meta():
+
+        model = models.Faculty
+        fields = '__all__'
+
+
+class EditFacultyForm(forms.Form):
+
+    def __init__(self, pk, *args, **kwargs):
+        super(EditFacultyForm, self).__init__(*args, **kwargs)
+        faculty = models.Faculty.objects.get(pk__exact=pk)
+        self.fields['department'] = forms.CharField(label='Department', initial=faculty.department)
+        self.fields['name'] = forms.CharField(label='Name', initial=faculty.name)
+        self.fields['designation'] = forms.CharField(label='Designation', initial=faculty.designation)
+        self.fields['contact_num'] = forms.IntegerField(label='Contact Number', initial=faculty.contact_num)
+        self.fields['qualification1'] = forms.CharField(label='Qualification 1', initial=faculty.qualification1)
+        self.fields['qualification2'] = forms.CharField(label='Qualification 2', initial=faculty.qualification2, required=False)
+        self.fields['qualification3'] = forms.CharField(label='Qualification 3', initial=faculty.qualification3, required=False)
+        self.fields['field_of_interest'] = forms.CharField(label='Field Of Interest', initial=faculty.field_of_interest, widget=forms.Textarea)
+        self.fields['experience'] = forms.CharField(label='Experience', initial=faculty.experience, widget=forms.Textarea)
+        self.fields['pic'] = forms.ImageField(label='Image', initial=faculty.pic)
+
+
+class LabForm(forms.ModelForm):
+
+    class Meta():
+
+        model = models.Lab
+        fields = '__all__'
+
+
+class EditLabForm(forms.Form):
+
+    def __init__(self, pk, *args, **kwargs):
+        super(EditLabForm, self).__init__(*args, **kwargs)
+        lab = models.Lab.objects.get(pk__exact=pk)
+        DEPARTMENT_CHOICES = []
+        department_list = models.Department.objects.all()
+        for department in department_list:
+            DEPARTMENT_CHOICES.append((department.pk, department.name))
+        self.fields['department'] = forms.ChoiceField(choices=DEPARTMENT_CHOICES)
+        self.fields['lab'] = forms.CharField(label='lab', initial=lab.lab)
+        
+        
