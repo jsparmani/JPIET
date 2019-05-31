@@ -194,3 +194,83 @@ class TrainingPlacement(models.Model):
 
 
 
+class Course(models.Model):
+
+	department = models.ForeignKey('frontend.Department', related_name = 'courses', on_delete = models.CASCADE)
+	name = models.CharField(max_length=150, blank=False)
+	semesters = models.PositiveIntegerField(blank=False)
+
+
+	def __str__(self):
+
+		return f'{self.department.name} {self.name}'
+
+	class Meta():
+		 ordering = ['pk']
+
+
+class Syllabus(models.Model):
+
+	course = models.ForeignKey('frontend.Course', related_name='syllabus', on_delete='models.CASCADE')
+	semester = models.PositiveIntegerField(blank=False)
+	pdf = models.FileField(upload_to='pdf/syllabus', blank=False)
+
+	def __str__(self):
+
+		return f'{self.course} {self.semester}'
+
+
+class Exam(models.Model):
+
+	course = models.ForeignKey('frontend.Course', related_name='exams', on_delete='models.CASCADE')
+	semester = models.PositiveIntegerField(blank=False)
+	date = models.DateField(blank=False)
+	pdf = models.FileField(upload_to='pdf/exam', blank=False)
+
+	def __str__(self):
+
+		return f'{self.department.name} {self.name}'
+
+
+class HomePDF(models.Model):
+
+	uid = models.PositiveIntegerField(unique=True, blank=False)
+	application_form = models.FileField(upload_to='pdf/home_pdf', blank=False)
+	information_brochure = models.FileField(upload_to='pdf/home_pdf', blank=False)
+	fees = models.FileField(upload_to='pdf/home_pdf', blank=False)
+	aicte = models.FileField(upload_to='pdf/home_pdf', blank=False)
+	anti_ragging = models.FileField(upload_to='pdf/home_pdf', blank=False)
+	training_placement = models.FileField(upload_to='pdf/home_pdf', blank=False)
+
+
+
+
+# class AdmissionApplication(models.Model):
+
+# 	name = models.CharField(max_length=120, blank=False)
+# 	father_name = models.CharField(max_length=120, blank=False)
+# 	mother_name = models.CharField(max_length=120, blank=False)
+# 	dob = models.DateField(blank=False)
+# 	aadhar = models.PositiveIntegerField(blank=False)
+# 	corr_add = models.TextField(blank=False)
+# 	perm_add = models.TextField(blank=False)
+# 	gender = models.CharField(max_length=3, choices=(('M','Male'),('F','Female')), blank=False)
+# 	nationality = models.CharField(max_length=30, blank=False)
+# 	email = models.EmailField(blank=False)
+# 	phn = models.PositiveIntegerField(blank=False)
+# 	father_occupation = models.CharField(max_length=120, blank=False)
+# 	father_income = models.CharField(max_length=100, blank=False)
+# 	roll_10 = models.PositiveIntegerField(blank=False)
+# 	aggregate_10 = models.CharField(max_length=50, blank=False)
+# 	pcm_10 = models.CharField(max_length=50, blank=False)
+# 	roll_12 = models.PositiveIntegerField(blank=False)
+# 	aggregate_12 = models.CharField(max_length=50, blank=False)
+# 	pcm_12 = models.CharField(max_length=50, blank=False)
+# 	roll_upsee = models.PositiveIntegerField(blank=False)
+# 	gen_rank = models.PositiveIntegerField(blank=False)
+# 	cat_rank = models.PositiveIntegerField(blank=False)
+# 	branch_1 = models.CharField(max_length=100, blank=False) 
+# 	branch_2 = models.CharField(max_length=100, blank=False) 
+# 	branch_3 = models.CharField(max_length=100, blank=False) 
+# 	branch_4 = models.CharField(max_length=100, blank=False) 
+

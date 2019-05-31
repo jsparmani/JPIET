@@ -16,8 +16,9 @@ def home(request):
     testimonials = fro_models.Testimonial.objects.all()
     recruiters = fro_models.Recruiter.objects.all().filter(on_landing__exact=True)
     about_us = fro_models.Message.objects.get(uid__exact=1)
+    home_pdf = fro_models.HomePDF.objects.get(uid__exact=1)
     
-    return render(request, 'home.html', {'home_image':home_image, 'stats':stats, 'notices':notices, 'medias':medias, 'events':events, 'testimonials':testimonials, 'recruiters':recruiters, 'about_us':about_us})
+    return render(request, 'home.html', {'home_image':home_image, 'stats':stats, 'notices':notices, 'medias':medias, 'events':events, 'testimonials':testimonials, 'recruiters':recruiters, 'about_us':about_us, 'home_pdf':home_pdf})
 
 def fault(request, fault):
     

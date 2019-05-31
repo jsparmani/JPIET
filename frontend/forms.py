@@ -223,3 +223,39 @@ class TrainingPlacementForm(forms.ModelForm):
 
         model = models.TrainingPlacement
         fields = '__all__'
+
+
+class CourseForm(forms.ModelForm):
+
+    class Meta():
+
+        model = models.Course
+        fields = '__all__'
+
+class SyllabusForm(forms.ModelForm):
+
+    class Meta():
+
+        model = models.Syllabus
+        fields = '__all__'
+
+
+class ExamForm(forms.ModelForm):
+
+    class Meta():
+
+        model = models.Exam
+        fields = '__all__'
+
+
+class HomePDFForm(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        super(HomePDFForm, self).__init__(*args, **kwargs)
+        home_pdf = models.HomePDF.objects.get(uid__exact=1)
+        self.fields['application_form'] = forms.FileField(label='Application Form', initial=home_pdf.application_form)
+        self.fields['information_brochure'] = forms.FileField(label='Information Brochure', initial=home_pdf.information_brochure)
+        self.fields['fees'] = forms.FileField(label='Fees', initial=home_pdf.fees)
+        self.fields['aicte'] = forms.FileField(label='AICTE Approval', initial=home_pdf.aicte)
+        self.fields['anti_ragging'] = forms.FileField(label='Anti Ragging', initial=home_pdf.anti_ragging)
+        self.fields['training_placement'] = forms.FileField(label='Training and Placement', initial=home_pdf.training_placement)

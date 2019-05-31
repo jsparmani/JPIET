@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br><br>        
+    {% for exam in exam_list %}
+        <a href="{{exam.pdf.url}}">{{exam.course.department.name}} - {{exam.course.name}} - {{exam.semester}} - {{exam.date}}</a><br>
+    {% endfor %}
+{% endblock %}

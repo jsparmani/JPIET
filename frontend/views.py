@@ -734,3 +734,119 @@ def view_training_placement(request):
 
 	training_placement_list = models.TrainingPlacement.objects.all()
 	return render(request, 'frontend/view-training-placement.html', {'training_placement_list':training_placement_list})
+
+
+@login_required
+def add_course(request):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.CourseForm(request.POST, request.FILES)
+			if form.is_valid():
+				form.save()
+				return redirect('success', success='Course created successfully')
+			else:
+				return redirect('fault', fault='Server Error')
+		else:
+
+			form = forms.CourseForm()
+			return render(request, 'frontend/add-course.html', {'form':form})
+
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+
+
+
+def view_courses(request):
+
+	course_list = models.Course.objects.all()
+	return render(request, 'frontend/view-courses.html', {'course_list':course_list})
+
+
+
+
+@login_required
+def add_syllabus(request):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.SyllabusForm(request.POST, request.FILES)
+			if form.is_valid():
+				form.save()
+				return redirect('success', success='Syllabus created successfully')
+			else:
+				return redirect('fault', fault='Server Error')
+		else:
+
+			form = forms.SyllabusForm()
+			return render(request, 'frontend/add-syllabus.html', {'form':form})
+
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+def view_syllabus(request):
+
+	syllabus_list = models.Syllabus.objects.all()
+	return render(request, 'frontend/view-syllabus.html', {'syllabus_list':syllabus_list})
+
+
+@login_required
+def add_exam(request):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.ExamForm(request.POST, request.FILES)
+			if form.is_valid():
+				form.save()
+				return redirect('success', success='Exam created successfully')
+			else:
+				return redirect('fault', fault='Server Error')
+		else:
+
+			form = forms.ExamForm()
+			return render(request, 'frontend/add-exam.html', {'form':form})
+
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
+
+def view_exam(request):
+
+	exam_list = models.Exam.objects.all()
+	return render(request, 'frontend/view-exam.html', {'exam_list':exam_list})
+
+
+@login_required
+def change_home_pdf(request):
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		if request.method == 'POST':
+			form = forms.HomePDFForm(request.POST, request.FILES)
+			if form.is_valid():
+				home_pdf = models.HomePDF.objects.get(uid__exact=1)
+				home_pdf.application_form = form.cleaned_data['application_form']
+				home_pdf.information_brochure = form.cleaned_data['information_brochure']
+				home_pdf.fees = form.cleaned_data['fees']
+				home_pdf.aicte = form.cleaned_data['aicte']
+				home_pdf.anti_ragging = form.cleaned_data['anti_ragging']
+				home_pdf.training_placement = form.cleaned_data['training_placement']
+				try:
+					home_pdf.save()
+				except:
+					return redirect('fault', fault = 'Server Error')
+				return redirect('success', success = 'Changes completed successfully')
+			else:
+				return redirect('fault', fault='Server Error')
+		else:
+			form = forms.HomePDFForm()
+			return render(request, 'frontend/change-home-pdf.html', {'form':form})
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')

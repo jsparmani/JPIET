@@ -5,6 +5,7 @@ app_name = 'frontend'
 
 urlpatterns = [
     path('change-home-image/', views.change_home_image, name='change_home_image'),
+    path('change-home-pdf/', views.change_home_pdf, name='change_home_pdf'),
     path('change-stats/', views.change_stats, name='change_stats'),
     path('add-notice/', views.add_notice, name='add_notice'),
     path('view-notices/', views.view_notices, name='view_notices'),
@@ -47,4 +48,10 @@ urlpatterns = [
     path('delete-department/<int:pk>/', views.delete_department, name='delete_department'),
     path('add-training-placement/', views.add_training_placement, name='add_training_placement'),
     path('view-training-placement/', views.view_training_placement, name='view_training_placement'),
+    path('add-course/', views.add_course, name='add_course'),
+    path('view-courses/', views.view_courses, name='view_courses'),
+    path('add-syllabus/', views.add_syllabus, name='add_syllabus'),
+    path('view-syllabus/', views.view_syllabus, name='view_syllabus'),
+    path('add-exam/', views.add_exam, name='add_exam'),
+    path('view-exam/', views.view_exam, name='view_exam'),
 ]

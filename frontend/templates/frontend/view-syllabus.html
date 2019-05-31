@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br><br>        
+    {% for syllabus in syllabus_list %}
+        <a href="{{syllabus.pdf.url}}">{{syllabus.course.department.name}} - {{syllabus.course.name}} - {{syllabus.semester}}</a><br>
+    {% endfor %}
+{% endblock %}

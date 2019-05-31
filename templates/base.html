@@ -29,6 +29,9 @@
     <a href="{% url 'frontend:view_medias' %}">Media</a>
     <a href="{% url 'frontend:view_department_list' %}">Departments</a>
     <a href="{% url 'frontend:view_training_placement' %}">Training & Placement</a>
+    <a href="{% url 'frontend:view_courses' %}">Courses</a>
+    <a href="{% url 'frontend:view_syllabus' %}">Syllabus</a>
+    <a href="{% url 'frontend:view_exam' %}">Exam Date Sheet</a>
     {% if user.is_authenticated %}
         <a href="{% url 'account:logout' %}">Logout</a>
         {% if user.pk in admin_all %}
@@ -37,6 +40,7 @@
             <a href="{% url 'account:user_list' %}">View Users</a>
             <br>
             <a href="{% url 'frontend:change_home_image' %}">Change home images</a>
+            <a href="{% url 'frontend:change_home_pdf' %}">Change home PDFs</a>
             <a href="{% url 'frontend:change_stats' %}">Change Statistics</a>
             <a href="{% url 'frontend:add_notice' %}">Add Notice</a>
             <a href="{% url 'frontend:add_media' %}">Add Media Coverage</a>
@@ -47,6 +51,9 @@
             <a href="{% url 'frontend:add_department' %}">Add Department</a>
             <a href="{% url 'frontend:add_faculty' %}">Add Faculty</a>
             <a href="{% url 'frontend:add_lab' %}">Add Lab</a>
+            <a href="{% url 'frontend:add_course' %}">Add Course</a>
+            <a href="{% url 'frontend:add_syllabus' %}">Add Syllabus</a>
+            <a href="{% url 'frontend:add_exam' %}">Add Exam Date Sheet</a>
             <br>
             <a href="{% url 'frontend:get_about_us' %}">Change Messages</a>
             <a href="{% url 'frontend:add_infrastructure' %}">Add Infrastructure</a>
@@ -58,6 +65,7 @@
         {% if user.pk in frontend_all %}
             <br>
             <a href="{% url 'frontend:change_home_image' %}">Change home images</a>
+            <a href="{% url 'frontend:change_home_pdf' %}">Change home PDFs</a>
             <a href="{% url 'frontend:change_stats' %}">Change Statistics</a>
             <a href="{% url 'frontend:add_notice' %}">Add Notice</a>
             <a href="{% url 'frontend:add_media' %}">Add Media Coverage</a>
@@ -68,6 +76,8 @@
             <a href="{% url 'frontend:add_department' %}">Add Department</a>
             <a href="{% url 'frontend:add_faculty' %}">Add Faculty</a>
             <a href="{% url 'frontend:add_lab' %}">Add Lab</a>
+            <a href="{% url 'frontend:add_course' %}">Add Course</a>
+            <a href="{% url 'frontend:add_syllabus' %}">Add Syllabus</a>
             <br>
             <a href="{% url 'frontend:get_about_us' %}">Change Messages</a>
             <a href="{% url 'frontend:add_infrastructure' %}">Add Infrastructure</a>
