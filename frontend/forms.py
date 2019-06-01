@@ -262,6 +262,19 @@ class SyllabusForm(forms.ModelForm):
         model = models.Syllabus
         fields = '__all__'
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['semester'].queryset = models.Semester.objects.none()
+
+        if 'course' in self.data:
+            try:
+                course_pk = int(self.data.get('course'))
+                self.fields['semester'].queryset = models.Semester.objects.filter(semester__lte=models.Course.objects.get(pk__exact=course_pk).semesters)
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+        elif self.instance.pk:
+            self.fields['semesters'].queryset = self.instance.course.semesters.all()
+
 
 class EditSyllabusForm(forms.Form):
 
@@ -283,6 +296,19 @@ class ExamForm(forms.ModelForm):
 
         model = models.Exam
         fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['semester'].queryset = models.Semester.objects.none()
+
+        if 'course' in self.data:
+            try:
+                course_pk = int(self.data.get('course'))
+                self.fields['semester'].queryset = models.Semester.objects.filter(semester__lte=models.Course.objects.get(pk__exact=course_pk).semesters)
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+        elif self.instance.pk:
+            self.fields['semesters'].queryset = self.instance.course.semesters.all()
 
 class EditExamForm(forms.Form):
 

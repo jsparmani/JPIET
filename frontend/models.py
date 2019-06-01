@@ -193,6 +193,18 @@ class TrainingPlacement(models.Model):
 
 
 
+class Semester(models.Model):
+
+	semester = models.PositiveIntegerField(unique=True)
+
+	def __str__(self):
+
+		return str(self.semester)
+
+	class Meta():
+
+		ordering = ['semester']
+
 
 class Course(models.Model):
 
@@ -212,7 +224,8 @@ class Course(models.Model):
 class Syllabus(models.Model):
 
 	course = models.ForeignKey('frontend.Course', related_name='syllabus', on_delete='models.CASCADE')
-	semester = models.PositiveIntegerField(blank=False)
+	# semester = models.PositiveIntegerField(blank=False)
+	semester = models.ForeignKey('frontend.Semester', related_name='syllabus', on_delete='models.CASCADE')
 	pdf = models.FileField(upload_to='pdf/syllabus', blank=False)
 
 	def __str__(self):
@@ -223,7 +236,8 @@ class Syllabus(models.Model):
 class Exam(models.Model):
 
 	course = models.ForeignKey('frontend.Course', related_name='exams', on_delete='models.CASCADE')
-	semester = models.PositiveIntegerField(blank=False)
+	# semester = models.PositiveIntegerField(blank=False)
+	semester = models.ForeignKey('frontend.Semester', related_name='exams', on_delete='models.CASCADE')
 	date = models.DateField(blank=False)
 	pdf = models.FileField(upload_to='pdf/exam', blank=False)
 

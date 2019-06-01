@@ -775,6 +775,14 @@ def delete_training_placement(request, pk):
 		return redirect('fault', fault='ACCESS DENIED!')
 
 
+
+def load_semesters(request):
+    course_pk = request.GET.get('course')
+    semesters = models.Semester.objects.all().filter(semester__lte=models.Course.objects.get(pk__exact=course_pk).semesters)
+    return render(request, 'frontend/semester_dropdown_list_options.html', {'semesters': semesters})
+
+
+
 @login_required
 def add_course(request):
 
