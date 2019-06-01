@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block head %}
+{% load staticfiles %}
+    {{ form.media.css }}
+{% endblock %}
+{% block content %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    {{form.as_p}}
+    <input type="submit" value="Submit">
+    {{ from.media.js }}
+{% endblock %}

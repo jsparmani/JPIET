@@ -286,7 +286,14 @@ class EditSyllabusForm(forms.Form):
         for course in course_list:
             COURSE_CHOICES.append((course.pk, course.name))
         self.fields['course'] = forms.ChoiceField(choices=COURSE_CHOICES, initial=syllabus.course.pk)
-        self.fields['semester'] = forms.IntegerField(label='Semester', initial=syllabus.semester)
+        self.fields['semester'] = forms.ModelMultipleChoiceField(label='Semester', initial=syllabus.semester, queryset=models.Semester.objects.none())
+        self.fields['semester'].queryset = models.Semester.objects.filter(semester__lte=models.Course.objects.get(pk__exact=syllabus.course.pk).semesters)
+        if 'course' in self.data:
+            try:
+                course_pk = int(self.data.get('course'))
+                self.fields['semester'].queryset = models.Semester.objects.filter(semester__lte=models.Course.objects.get(pk__exact=course_pk).semesters)
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
         self.fields['pdf'] = forms.FileField(label='PDF', initial=syllabus.pdf)
 
 
@@ -320,7 +327,14 @@ class EditExamForm(forms.Form):
         for course in course_list:
             COURSE_CHOICES.append((course.pk, course.name))
         self.fields['course'] = forms.ChoiceField(choices=COURSE_CHOICES, initial=exam.course.pk)
-        self.fields['semester'] = forms.IntegerField(label='Semester', initial=exam.semester)
+        self.fields['semester'] = forms.ModelMultipleChoiceField(label='Semester', initial=exam.semester, queryset=models.Semester.objects.none())
+        self.fields['semester'].queryset = models.Semester.objects.filter(semester__lte=models.Course.objects.get(pk__exact=exam.course.pk).semesters)
+        if 'course' in self.data:
+            try:
+                course_pk = int(self.data.get('course'))
+                self.fields['semester'].queryset = models.Semester.objects.filter(semester__lte=models.Course.objects.get(pk__exact=course_pk).semesters)
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
         self.fields['date'] = forms.DateField(label='Date', initial=exam.date)
         self.fields['pdf'] = forms.FileField(label='PDF', initial=exam.pdf)
 
