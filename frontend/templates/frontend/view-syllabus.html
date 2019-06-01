@@ -2,7 +2,8 @@
 {% block content %}
 <br><br><br>        
     {% for syllabus in syllabus_list %}
-        <a href="{{syllabus.pdf.url}}">{{syllabus.course.department.name}} - {{syllabus.course.name}} - {{syllabus.semester}}</a><br>
+    <br><br>
+        <a href="{{syllabus.pdf.url}}">{{syllabus.course.department.name}} - {{syllabus.course.name}} - {{syllabus.semester}}</a>
         {% if user.is_authenticated %}
             {% if user.pk in admin_all or user.pk in frontend_all %}
                 <a href="{% url 'frontend:edit_syllabus' pk=syllabus.pk %}">Edit</a>

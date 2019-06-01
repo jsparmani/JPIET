@@ -251,7 +251,7 @@ class EditCourseForm(forms.Form):
         department_list = models.Department.objects.all()
         for department in department_list:
             DEPARTMENT_CHOICES.append((department.pk, department.name))
-        self.fields['department'] = forms.ChoiceField(choices=DEPARTMENT_CHOICES)
+        self.fields['department'] = forms.ChoiceField(choices=DEPARTMENT_CHOICES, initial=course.department.pk)
         self.fields['name'] = forms.CharField(label='lab', initial=course.name)
         self.fields['semesters'] = forms.IntegerField(label='Semesters', initial=course.semesters)
 
@@ -272,7 +272,7 @@ class EditSyllabusForm(forms.Form):
         course_list = models.Course.objects.all()
         for course in course_list:
             COURSE_CHOICES.append((course.pk, course.name))
-        self.fields['course'] = forms.ChoiceField(choices=COURSE_CHOICES)
+        self.fields['course'] = forms.ChoiceField(choices=COURSE_CHOICES, initial=syllabus.course.pk)
         self.fields['semester'] = forms.IntegerField(label='Semester', initial=syllabus.semester)
         self.fields['pdf'] = forms.FileField(label='PDF', initial=syllabus.pdf)
 
@@ -293,7 +293,7 @@ class EditExamForm(forms.Form):
         course_list = models.Course.objects.all()
         for course in course_list:
             COURSE_CHOICES.append((course.pk, course.name))
-        self.fields['course'] = forms.ChoiceField(choices=COURSE_CHOICES)
+        self.fields['course'] = forms.ChoiceField(choices=COURSE_CHOICES, initial=exam.course.pk)
         self.fields['semester'] = forms.IntegerField(label='Semester', initial=exam.semester)
         self.fields['date'] = forms.DateField(label='Date', initial=exam.date)
         self.fields['pdf'] = forms.FileField(label='PDF', initial=exam.pdf)
