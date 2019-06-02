@@ -33,6 +33,7 @@
     <a href="{% url 'frontend:view_syllabus' %}">Syllabus</a>
     <a href="{% url 'frontend:view_exam' %}">Exam Date Sheet</a>
     <a href="{% url 'admission:view_application' %}">Fill Admission Form</a>
+    <a href="{% url 'admission:view_application_list' %}">Applications</a>
 
     {% if user.is_authenticated %}
         <a href="{% url 'account:logout' %}">Logout</a>

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+{{application.name}}
+{{application.year}}
+{{application.is_active}}
+{{application.pdf}}
+{{application.course_1}}
+{{application.course_2}}
+{{application.course_3}}
+{{application.course_4}}
+{{application.course_5}}
+{{application.course_6}}
+{{application.course_7}}
+{{application.course_8}}
+{{application.course_9}}
+{{application.course_10}}
+{{application.course_11}}
+{{application.course_12}}
+{{application.course_13}}
+{{application.course_14}}
+{{application.course_15}}<br>
+<a href="{# url 'admission:edit_application' pk=application.pk #}">Edit</a>
+{% endblock %}

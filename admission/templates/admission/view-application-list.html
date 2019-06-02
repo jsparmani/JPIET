@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br>
+    {% for application in application_list %}
+        <a href="{% url 'admission:view_application_details' pk=application.pk %}">{{application.name}} {{application.year}}</a>
+        <a href="{% url 'admission:delete_application' pk=application.pk %}">x</a>
+        <br>
+    {% endfor %}
+{% endblock %}

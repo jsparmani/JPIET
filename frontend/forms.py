@@ -213,7 +213,7 @@ class EditLabForm(forms.Form):
         department_list = models.Department.objects.all()
         for department in department_list:
             DEPARTMENT_CHOICES.append((department.pk, department.name))
-        self.fields['department'] = forms.ChoiceField(choices=DEPARTMENT_CHOICES)
+        self.fields['department'] = forms.ChoiceField(choices=DEPARTMENT_CHOICES, initial=lab.department.pk)
         self.fields['lab'] = forms.CharField(label='lab', initial=lab.lab)
         
         
