@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br>
+    {% for application in application_list %}
+        <a href="{% url 'admission:add_candidate' pk=application.pk %}">{{application.name}} {{application.year}}</a>
+        {% if user.pk in admin_all or user.pk in frontend_all %}
+        	<a href="{% url 'admission:view_candidate' pk=application.pk %}">View Registered Candidates</a>
+        {% endif %}
+
+
+        <br>
+    {% endfor %}
+{% endblock %}
