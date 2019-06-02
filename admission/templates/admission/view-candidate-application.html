@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br>
+
+<a href="{% url 'admission:print_candidate_application' pk=candidate.pk %}"><button>Download</button></a>
+
+<br>
+<br>
+
+<strong>Application - </strong>{{ candidate.application.name }} <br>
+<strong>Application Number - </strong>{{ candidate.application_no }} <br>
+<strong>Name - </strong>{{ candidate.name }} <br>
+<strong>Father's Name - </strong>{{ candidate.father_name }} <br>
+<strong>Mother's Name - </strong>{{ candidate.mother_name }} <br>
+<strong>Date Of Birth - </strong>{{ candidate.dob }} <br>
+<strong>AADHAR Number - </strong>{{ candidate.aadhar }} <br>
+<strong>Correspondence Address - </strong>{{ candidate.corr_add }} <br>
+<strong>Permanent Address - </strong>{{ candidate.perm_add }} <br>
+<strong>Gender - </strong>{{ candidate.gender }} <br>
+<strong>Nationality - </strong>{{ candidate.nationality }} <br>
+<strong>Email - </strong>{{ candidate.email }} <br>
+<strong>Phone number - </strong>{{ candidate.phn }} <br>
+<strong>Father's Occupation - </strong>{{ candidate.father_occupation }} <br>
+<strong>Father's Income - </strong>{{ candidate.father_income }} <br>
+<strong>Class 10th Roll Number  - </strong>{{ candidate.roll_10 }} <br>
+<strong>Class 10th Aggregate Score - </strong>{{ candidate.aggregate_10 }} <br>
+<strong>Class 10th PCM - </strong>{{ candidate.pcm_10 }} <br>
+<strong>Class 12th Roll Number  - </strong>{{ candidate.roll_12 }} <br>
+<strong>Class 12th Aggregate Score - </strong>{{ candidate.aggregate_12 }} <br>
+<strong>Class 12th PCM - </strong>{{ candidate.pcm_12 }} <br>
+<strong>UPSEE Roll number - </strong>{{ candidate.roll_upsee }} <br>
+<strong>UPSEE General Rank - </strong>{{ candidate.gen_rank }} <br>
+<strong>UPSEE Category Rank - </strong>{{ candidate.cat_rank }} <br>
+<strong>Branch Preference 1 - </strong>{{ candidate.branch_1 }} <br>
+<strong>Branch Preference 2 - </strong>{{ candidate.branch_2 }} <br>
+<strong>Branch Preference 3 - </strong>{{ candidate.branch_3 }} <br>
+<strong>Branch Preference 4 - </strong>{{ candidate.branch_4 }} <br>
+
+
+{% endblock %}

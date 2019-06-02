@@ -43,7 +43,7 @@ class ApplicationNumber(models.Model):
 
 class Candidate(models.Model):
 
-	INCOME_CHOICES = (('Income up to Rs. 2,50,000','Income up to Rs. 2,50,000'),('Income from Rs. 2,50,000 - Rs. 5,00,000','Income from Rs. 2,50,000 - Rs. 5,00,000'),('Income from Rs. 5,00,000 - 10,00,000','Income from Rs. 5,00,000 - 10,00,000'),('Income more than Rs. 10,00,000','Income more than Rs. 10,00,000'))
+	INCOME_CHOICES = (('Up to Rs. 2,50,000','Up to Rs. 2,50,000'),('From Rs. 2,50,000 - Rs. 5,00,000','From Rs. 2,50,000 - Rs. 5,00,000'),('From Rs. 5,00,000 - 10,00,000','From Rs. 5,00,000 - 10,00,000'),('More than Rs. 10,00,000','More than Rs. 10,00,000'))
 
 	application = models.ForeignKey('admission.Application', related_name='candidates', on_delete=models.CASCADE)
 	application_no = models.PositiveIntegerField(unique=True, blank=False)
@@ -51,7 +51,7 @@ class Candidate(models.Model):
 	father_name = models.CharField(max_length=120, blank=False)
 	mother_name = models.CharField(max_length=120, blank=False)
 	dob = models.DateField(blank=False)
-	aadhar = models.PositiveIntegerField(unique=True, blank=False)
+	aadhar = models.PositiveIntegerField(blank=False)
 	corr_add = models.TextField(blank=False)
 	perm_add = models.TextField(blank=False)
 	gender = models.CharField(max_length=3, choices=(('M','Male'),('F','Female'),('T','Transgender')), blank=False)
@@ -77,5 +77,11 @@ class Candidate(models.Model):
 	def __str__(self):
 
 		return self.name
+
+
+	class Meta():
+
+		unique_together = ['application','aadhar']
+		ordering = ['application_no']
 
 

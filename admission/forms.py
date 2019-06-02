@@ -33,6 +33,7 @@ class CandidateForm(forms.ModelForm):
 	    c = 4
 	    for i in range(4-len(pk_list)):
 	    	del self.fields[f'branch_{c}']
+	    	c = c-1
 
 
 	    for i in range(1,len(pk_list)+1):

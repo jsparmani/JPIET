@@ -999,7 +999,6 @@ def change_home_pdf(request):
 			form = forms.HomePDFForm(request.POST, request.FILES)
 			if form.is_valid():
 				home_pdf = models.HomePDF.objects.get(uid__exact=1)
-				home_pdf.application_form = form.cleaned_data['application_form']
 				home_pdf.information_brochure = form.cleaned_data['information_brochure']
 				home_pdf.fees = form.cleaned_data['fees']
 				home_pdf.aicte = form.cleaned_data['aicte']

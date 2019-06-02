@@ -9,5 +9,7 @@ urlpatterns = [
 		path('view-application/', views.view_application, name = 'view_application'),
 		path('add-candidate/<int:pk>/', views.add_candidate, name = 'add_candidate'),
 		path('view-candidate/<int:pk>/', views.view_candidate, name = 'view_candidate'),
+		path('view-candidate-application/<int:pk>/', views.view_candidate_application, name = 'view_candidate_application'),
+		path('print-candidate-application/<int:pk>/', views.print_candidate_application, name = 'print_candidate_application'),
 
 ]

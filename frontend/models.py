@@ -249,7 +249,6 @@ class Exam(models.Model):
 class HomePDF(models.Model):
 
 	uid = models.PositiveIntegerField(unique=True, blank=False)
-	application_form = models.FileField(upload_to='pdf/home_pdf', blank=False)
 	information_brochure = models.FileField(upload_to='pdf/home_pdf', blank=False)
 	fees = models.FileField(upload_to='pdf/home_pdf', blank=False)
 	aicte = models.FileField(upload_to='pdf/home_pdf', blank=False)
