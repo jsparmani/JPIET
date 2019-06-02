@@ -32,6 +32,8 @@
     <a href="{% url 'frontend:view_courses' %}">Courses</a>
     <a href="{% url 'frontend:view_syllabus' %}">Syllabus</a>
     <a href="{% url 'frontend:view_exam' %}">Exam Date Sheet</a>
+    <a href="{% url 'admission:view_application' %}">Fill Admission Form</a>
+
     {% if user.is_authenticated %}
         <a href="{% url 'account:logout' %}">Logout</a>
         {% if user.pk in admin_all %}
@@ -60,6 +62,8 @@
             <a href="{% url 'frontend:change_vision_mission' %}">Change Vision & Mission</a>
             <br>
             <a href="{% url 'frontend:add_training_placement' %}">Add Training & Placement</a>
+            <br>
+            <a href="{% url 'admission:add_application' %}">Add Application</a>
 
         {% endif %}
         {% if user.pk in frontend_all %}
@@ -84,6 +88,8 @@
             <a href="{% url 'frontend:change_vision_mission' %}">Change Vision & Mission</a>
             <br>
             <a href="{% url 'frontend:add_training_placement' %}">Add Training & Placement</a>
+            <br>
+            <a href="{% url 'admission:add_application' %}">Add Application</a>
 
         {% endif %}
         

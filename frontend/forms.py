@@ -113,7 +113,7 @@ class MessageForm(forms.Form):
         self.fields['title'] = forms.CharField(label='Title', initial=msg.title)
         self.fields['name'] = forms.CharField(label='Name', initial=msg.name)
         self.fields['image'] = forms.ImageField(label='Image', initial=msg.image)
-        self.fields['message'] = forms.TextField(label='Message', initial=msg.message)
+        self.fields['message'] = forms.CharField(label='Message', initial=msg.message)
 
 
 class InfrastructureForm(forms.ModelForm):

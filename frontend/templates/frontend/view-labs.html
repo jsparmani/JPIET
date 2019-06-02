@@ -10,7 +10,7 @@
     {% endif %}
     {% endif %}
     {% if not user.is_authenticated %}
-    {% for media in medias %}
+    {% for lab in lab_list %}
     {{lab.department.name}} {{lab.lab}}<br>
     {% endfor %}
     {% endif %}

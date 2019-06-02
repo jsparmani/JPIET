@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br>
+	<table>
+		<thead>
+			<tr>
+				<th>Application Number</th>
+				<th>Name</th>
+				<th>UPSEE General Rank</th>
+				<th>UPSEE Category Rank</th>
+				<th>Branch Preference 1</th>
+				<th>Branch Preference 2</th>
+				<th>Branch Preference 3</th>
+			</tr>
+		</thead>
+		<tbody>
+		    {% for candidate in candidate_list %}
+		    	<tr>
+		    		<td>{{candidate.application_no}}</td>
+		    		<td>{{candidate.name}}</td>
+		    		<td>{{candidate.gen_rank}}</td>
+		    		<td>{{candidate.cat_rank}}</td>
+		    		<td>{{candidate.branch_1}}</td>
+		    		<td>{{candidate.branch_2}}</td>
+		    		<td>{{candidate.branch_3}}</td>
+		    	</tr>
+		    {% endfor %}
+	    </tbody>
+    </table>
+{% endblock %}

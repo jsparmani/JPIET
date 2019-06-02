@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'frontend',
+    'admission',
     'django_cleanup'
 ]
 
