@@ -11,18 +11,22 @@
 				<th>Branch Preference 1</th>
 				<th>Branch Preference 2</th>
 				<th>Branch Preference 3</th>
+				<th>Branch Preference 4</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 		    {% for candidate in candidate_list %}
 		    	<tr>
-		    		<td>{{candidate.application_no}}</td>
+		    		<td><a href="{% url 'admission:view_candidate_application' pk=candidate.pk %}">{{candidate.application_no}}</a></td>
 		    		<td>{{candidate.name}}</td>
 		    		<td>{{candidate.gen_rank}}</td>
 		    		<td>{{candidate.cat_rank}}</td>
 		    		<td>{{candidate.branch_1}}</td>
 		    		<td>{{candidate.branch_2}}</td>
 		    		<td>{{candidate.branch_3}}</td>
+		    		<td>{{candidate.branch_4}}</td>
+		    		<td><a href="{% url 'admission:print_candidate_application' pk=candidate.pk %}"><button>Download</button></a></td>
 		    	</tr>
 		    {% endfor %}
 	    </tbody>

@@ -344,7 +344,6 @@ class HomePDFForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(HomePDFForm, self).__init__(*args, **kwargs)
         home_pdf = models.HomePDF.objects.get(uid__exact=1)
-        self.fields['application_form'] = forms.FileField(label='Application Form', initial=home_pdf.application_form)
         self.fields['information_brochure'] = forms.FileField(label='Information Brochure', initial=home_pdf.information_brochure)
         self.fields['fees'] = forms.FileField(label='Fees', initial=home_pdf.fees)
         self.fields['aicte'] = forms.FileField(label='AICTE Approval', initial=home_pdf.aicte)

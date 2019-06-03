@@ -32,8 +32,7 @@
     <a href="{% url 'frontend:view_courses' %}">Courses</a>
     <a href="{% url 'frontend:view_syllabus' %}">Syllabus</a>
     <a href="{% url 'frontend:view_exam' %}">Exam Date Sheet</a>
-    <a href="{% url 'admission:view_application' %}">Fill Admission Form</a>
-    <a href="{% url 'admission:view_application_list' %}">Applications</a>
+    
 
     {% if user.is_authenticated %}
         <a href="{% url 'account:logout' %}">Logout</a>
@@ -65,6 +64,8 @@
             <a href="{% url 'frontend:add_training_placement' %}">Add Training & Placement</a>
             <br>
             <a href="{% url 'admission:add_application' %}">Add Application</a>
+            <a href="{% url 'admission:view_application' %}">View Admission Applications</a>
+
 
         {% endif %}
         {% if user.pk in frontend_all %}
@@ -91,12 +92,14 @@
             <a href="{% url 'frontend:add_training_placement' %}">Add Training & Placement</a>
             <br>
             <a href="{% url 'admission:add_application' %}">Add Application</a>
+            <a href="{% url 'admission:view_application' %}">View Admission Applications</a>
 
         {% endif %}
         
 
     {% endif %}
     {% if not user.is_authenticated %}
+        <a href="{% url 'admission:view_application' %}">Fill Admission Form</a>
         <a href="{% url 'account:login' %}">Login</a>
     {% endif %}
     {% block content %}
