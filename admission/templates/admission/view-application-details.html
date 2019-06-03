@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<br>
+<br><br>
 {{application.name}}
 {{application.year}}
 {{application.is_active}}
-{{application.pdf}}
+<a href="{{ application.pdf.url }}">Download</a>
 {{application.course_1}}
 {{application.course_2}}
 {{application.course_3}}
