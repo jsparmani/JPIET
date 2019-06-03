@@ -43,7 +43,8 @@ class ApplicationNumber(models.Model):
 
 class Candidate(models.Model):
 
-	INCOME_CHOICES = (('Up to Rs. 2,50,000','Up to Rs. 2,50,000'),('From Rs. 2,50,000 - Rs. 5,00,000','From Rs. 2,50,000 - Rs. 5,00,000'),('From Rs. 5,00,000 - 10,00,000','From Rs. 5,00,000 - 10,00,000'),('More than Rs. 10,00,000','More than Rs. 10,00,000'))
+	INCOME_CHOICES = (('Up to Rs. 2,00,000','Up to Rs. 2,00,000'),('From Rs. 2,00,000 - Rs. 5,00,000','From Rs. 2,00,000 - Rs. 5,00,000'),('From Rs. 5,00,000 - 10,00,000','From Rs. 5,00,000 - 10,00,000'),('More than Rs. 10,00,000','More than Rs. 10,00,000'))
+	CATEGORY_CHOICES = (('General','General'), ('OBC','OBC'), ('SC/ST','SC/ST'), ('Minority','Minority'),)
 
 	application = models.ForeignKey('admission.Application', related_name='candidates', on_delete=models.CASCADE)
 	application_no = models.PositiveIntegerField(unique=True, blank=False)
@@ -55,6 +56,7 @@ class Candidate(models.Model):
 	corr_add = models.TextField(blank=False)
 	perm_add = models.TextField(blank=False)
 	gender = models.CharField(max_length=3, choices=(('M','Male'),('F','Female'),('T','Transgender')), blank=False)
+	category = models.CharField(max_length=30, choices=CATEGORY_CHOICES, blank=False )
 	nationality = models.CharField(max_length=30, blank=False)
 	email = models.EmailField(blank=False)
 	phn = models.PositiveIntegerField(blank=False)
