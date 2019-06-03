@@ -20,5 +20,5 @@
 {{application.course_13}}
 {{application.course_14}}
 {{application.course_15}}<br>
-<a href="{# url 'admission:edit_application' pk=application.pk #}">Edit</a>
+<a href="{% url 'admission:edit_application' pk=application.pk %}">Change status</a>
 {% endblock %}

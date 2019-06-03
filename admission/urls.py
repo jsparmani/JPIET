@@ -11,7 +11,7 @@ urlpatterns = [
 		path('view-candidate/<int:pk>/', views.view_candidate, name = 'view_candidate'),
 		path('view-application-list/', views.view_application_list, name = 'view_application_list'),
 		path('view-application-details/<int:pk>/', views.view_application_details, name = 'view_application_details'),
-		# path('edit-application/<int:pk>/', views.edit_application, name = 'edit_application'),
+		path('edit-application/<int:pk>/', views.edit_application, name = 'edit_application'),
 		path('delete-application/<int:pk>/', views.delete_application, name = 'delete_application'),
 		
 		path('view-candidate-application/<int:pk>/', views.view_candidate_application, name = 'view_candidate_application'),

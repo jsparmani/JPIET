@@ -122,41 +122,31 @@ def view_application_details(request ,pk):
 	except:
 		return redirect('fault', fault="Server Error")
 
-""" 
+@login_required
 def edit_application(request, pk):
 
-	if request.method == 'POST':
-		form = forms.EditApplicationForm(data=request.POST, files=request.FILES, pk=pk)
-		if form.is_valid():
-			application = models.Application.objects.get(pk__exact=pk)
-			application.name = form.cleaned_data['name']
-			application.year = form.cleaned_data['year']
-			application.is_active = form.cleaned_data['is_active']
-			application.pdf = form.cleaned_data['pdf']
-			application.course_1 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_1'])
-			application.course_2 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_2'])
-			application.course_3 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_3'])
-			application.course_4 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_4'])
-			application.course_5 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_5'])
-			application.course_6 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_6'])
-			application.course_7 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_7'])
-			application.course_8 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_8'])
-			application.course_9 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_9'])
-			application.course_10 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_10'])
-			application.course_11 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_11'])
-			application.course_12 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_12'])
-			application.course_13 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_13'])
-			application.course_14 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_14'])
-			application.course_15 = fro_models.Course.objects.get(pk__exact=form.cleaned_data['course_15'])
-			try:
-				application.save()
-			except:
-				return redirect('fault', fault='Server Error')
-			return redirect('success', success='Application data changed successfully')
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+
+		if request.method == 'POST':
+			form = forms.EditApplicationForm(data=request.POST, files=request.FILES, pk=pk)
+			if form.is_valid():
+				application = models.Application.objects.get(pk__exact=pk)
+				
+				application.is_active = form.cleaned_data['is_active']
+				try:
+					application.save()
+				except:
+					return redirect('fault', fault='Server Error')
+				return redirect('success', success='Application data changed successfully')
+		else:
+			form = forms.EditApplicationForm(pk=pk)
+			return render(request, 'admission/add-application.html', {'form':form})
+
 	else:
-		form = forms.EditApplicationForm(pk=pk)
-		return render(request, 'admission/add-application.html', {'form':form})
- """
+		return redirect('fault', fault='ACCESS DENIED!')
+
 
 @login_required
 def delete_application(request, pk):
