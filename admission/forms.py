@@ -60,10 +60,10 @@ class CandidateForm(forms.ModelForm):
             if attr[0:6]=='course' and not value == None:
                 pk_list.append(value)
 
-	    c = 4
-	    for i in range(4-len(pk_list)):
-	    	del self.fields[f'branch_{c}']
-	    	c = c-1
+        c = 4
+        for i in range(4-len(pk_list)):
+            del self.fields[f'branch_{c}']
+            c = c-1
 
 
         for i in range(1,len(pk_list)+1):

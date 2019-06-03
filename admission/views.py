@@ -108,7 +108,6 @@ def view_candidate(request, pk):
 		return redirect('fault', fault='ACCESS DENIED!')
 
 
-<<<<<<< HEAD
 def view_application_list(request):
 
 	application_list = models.Application.objects.all().filter(is_active__exact=True)
@@ -169,7 +168,6 @@ def delete_application(request, pk):
 	except:
 		return redirect('fault', fault="Some error occured")
 	
-=======
 
 def view_candidate_application(request, pk):
 
@@ -540,4 +538,3 @@ def print_candidate_application(request, pk):
 	else:
 		return redirect('fault', fault='ACCESS DENIED!')
 
->>>>>>> origin/phase1
