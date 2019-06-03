@@ -65,8 +65,11 @@ class CandidateForm(forms.ModelForm):
             del self.fields[f'branch_{c}']
             c = c-1
 
-
-        for i in range(1,len(pk_list)+1):
-            self.fields[f'branch_{i}'].queryset = fro_models.Course.objects.filter(pk__in=pk_list)
+        if (len(pk_list)<5):
+            for i in range(1,len(pk_list)+1):
+                self.fields[f'branch_{i}'].queryset = fro_models.Course.objects.filter(pk__in=pk_list)
+        else:
+            for i in range(1,5):
+                self.fields[f'branch_{i}'].queryset = fro_models.Course.objects.filter(pk__in=pk_list)
 
 

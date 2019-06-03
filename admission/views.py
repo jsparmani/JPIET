@@ -110,14 +110,14 @@ def view_candidate(request, pk):
 
 def view_application_list(request):
 
-	application_list = models.Application.objects.all().filter(is_active__exact=True)
+	application_list = models.Application.objects.all()
 	return render(request, 'admission/view-application-list.html', {'application_list':application_list} )
 
 
 def view_application_details(request ,pk):
 
 	try:
-		application = models.Application.objects.get(pk__exact=pk, is_active__exact=True)
+		application = models.Application.objects.get(pk__exact=pk)
 		return render(request, 'admission/view-application-details.html', {'application':application})
 	except:
 		return redirect('fault', fault="Server Error")
@@ -158,17 +158,23 @@ def edit_application(request, pk):
 		return render(request, 'admission/add-application.html', {'form':form})
  """
 
-
+@login_required
 def delete_application(request, pk):
 
-	
-	try:
-		models.Application.objects.get(pk__exact=pk).delete()
-		return redirect('admission:view_application_list')
-	except:
-		return redirect('fault', fault="Some error occured")
+
+	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
+	frontend_all = [u['user'] for u in acc_models.FrontEndUser.objects.all().values('user')]
+	if request.user.pk in admin_all or request.user.pk in frontend_all:
+		try:
+			models.Application.objects.get(pk__exact=pk).delete()
+			return redirect('admission:view_application_list')
+		except:
+			return redirect('fault', fault="Some error occured")
+	else:
+		return redirect('fault', fault='ACCESS DENIED!')
 	
 
+@login_required
 def view_candidate_application(request, pk):
 
 	admin_all = [u['user'] for u in acc_models.AdminUser.objects.all().values('user')]
