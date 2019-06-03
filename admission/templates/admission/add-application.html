@@ -1,5 +1,251 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<script>
+    function choiceSelection(event) {
+        if (event.target.id === "id_course_1") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_2") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_3") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_4") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_5") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_6") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_7") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_8") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_9") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_10") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_11") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_12") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_13") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_14") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_15').options[index].setAttribute("disabled", "");
+        } else if (event.target.id === "id_course_15") {
+            index = event.target.selectedIndex;
+            document.getElementById('id_course_2').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_3').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_4').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_5').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_6').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_7').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_8').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_9').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_10').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_11').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_12').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_13').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_1').options[index].setAttribute("disabled", "");
+            document.getElementById('id_course_14').options[index].setAttribute("disabled", "");
+        }
+    }
+</script>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}

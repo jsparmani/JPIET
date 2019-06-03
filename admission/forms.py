@@ -10,6 +10,24 @@ class ApplicationForm(forms.ModelForm):
         model = models.Application
         fields = '__all__'
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['course_1'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_2'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_3'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_4'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_5'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_6'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_7'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_8'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_9'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_10'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_11'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_12'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_13'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_14'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['course_15'].widget.attrs['onchange'] = 'choiceSelection(event)'
+
 
 class EditApplicationForm(forms.Form):
 
@@ -31,6 +49,10 @@ class CandidateForm(forms.ModelForm):
         super(CandidateForm, self).__init__(*args, **kwargs)
         # self.fields['application'].queryset = models.Application.objects.filter(is_active=True)
         application = models.Application.objects.get(pk__exact=pk)
+        self.fields['branch_1'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['branch_2'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['branch_3'].widget.attrs['onchange'] = 'choiceSelection(event)'
+        self.fields['branch_4'].widget.attrs['onchange'] = 'choiceSelection(event)'
 
         pk_list = []
 
